@@ -1,5 +1,5 @@
 import { AccessibilityEntity } from './../accessibility/entities/accessibility.entity';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -16,16 +16,20 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const user = this.usersRepository.create(createUserDto);
-    const accessibility = this.accessibilityRepository.create(
-      createUserDto.accessibilities
-    );
-    user.accessibilities = accessibility;
-    accessibility.user = user;
-    await this.accessibilityRepository.save(accessibility);
-    const saved = await this.usersRepository.save(user);
-    delete saved.password;
-    return saved;
+    try {
+      const user = this.usersRepository.create(createUserDto);
+      const accessibility = this.accessibilityRepository.create(
+        createUserDto.accessibilities
+      );
+      user.accessibilities = accessibility;
+      accessibility.user = user;
+      await this.accessibilityRepository.save(accessibility);
+      const saved = await this.usersRepository.save(user);
+      delete saved.password;
+      return saved;
+    } catch (error) {
+      throw new UnauthorizedException("E-mail already in use. Try to login")
+    }
   }
 
   async findAll() {
