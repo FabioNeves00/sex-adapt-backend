@@ -10,8 +10,10 @@ import {
   Post,
   Put
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { RecoverPasswordService } from '@providers/recover-password/recover-password.service';
 
+@ApiTags('Recover Routes')
 @Public()
 @Controller('auth/recover')
 export class RecoverController {
@@ -20,7 +22,6 @@ export class RecoverController {
   @Post()
   @HttpCode(HttpStatus.OK)
   async recoverPassword(@Body() recoverPasswordDto: CreateRecoverPasswordDto) {
-    // return recoverPasswordDto;
     return await this.recoverService.create(recoverPasswordDto);
   }
 
