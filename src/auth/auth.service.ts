@@ -33,7 +33,10 @@ export class AuthService {
 
     if (!user) throw new LoginFailedException();
 
-    const password_match = await argon2.verify(user.password, authInfo.password);
+    const password_match = await argon2.verify(
+      user.password,
+      authInfo.password
+    );
     if (!password_match) throw new LoginFailedException();
 
     const tokens = await this.getTokens(user.id, user.email);
@@ -53,7 +56,10 @@ export class AuthService {
     if (!user || !user.hashedRefreshToken)
       throw new NotFoundException('User not found');
 
-    const rt_match = await argon2.verify(user.hashedRefreshToken, refresh_token);
+    const rt_match = await argon2.verify(
+      user.hashedRefreshToken,
+      refresh_token
+    );
     if (!rt_match) throw new UnauthorizedException();
 
     const tokens = await this.getTokens(user.id, user.email);
