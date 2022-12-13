@@ -11,7 +11,7 @@ import {
   OneToOne
 } from 'typeorm';
 import { ReviewEntity } from './../../review/entities/review.entity';
-import { hash } from 'argon2';
+import { hash } from 'bcrypt';
 import { BaseEntity } from './../../base/entities/base-entity.entity';
 import { IUserEntity } from './../interfaces/user.interface';
 import { SuportEntity } from '@models/suport/entities/suport.entity';
@@ -59,11 +59,11 @@ export class UserEntity extends BaseEntity implements IUserEntity {
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await hash(this.password);
+    this.password = await hash(this.password, 8);
   }
 
   @BeforeUpdate()
   async updatePassword() {
-    this.password = await hash(this.password);
+    this.password = await hash(this.password, 8);
   }
 }
