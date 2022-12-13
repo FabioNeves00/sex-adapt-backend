@@ -14,7 +14,7 @@ async function bootstrap() {
   });
   app.use(morgan(':method :url :status\n - :response-time ms -\n :body'));
   await app.listen(3000, () => {
-    console.log('Listening on localhost:3000');
+    console.log('Listening on localhost:8080');
   });
 }
 bootstrap();

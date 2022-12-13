@@ -5,7 +5,7 @@ import { CreateUserDto } from './../models/user/dto/create-user.dto';
 import { ConfigService } from '@nestjs/config';
 import { UnauthorizedException, Injectable } from '@nestjs/common';
 import { AuthDto } from './dto/auth.dto';
-import { verify, hash } from 'argon2';
+import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '@models/user/user.service';
 import { Tokens } from './@types/tokens.type';
@@ -33,7 +33,7 @@ export class AuthService {
 
     if (!user) throw new LoginFailedException();
 
-    const password_match = await verify(user.password, authInfo.password);
+    const password_match = await argon2.verify(user.password, authInfo.password);
     if (!password_match) throw new LoginFailedException();
 
     const tokens = await this.getTokens(user.id, user.email);
@@ -53,7 +53,7 @@ export class AuthService {
     if (!user || !user.hashedRefreshToken)
       throw new NotFoundException('User not found');
 
-    const rt_match = await verify(user.hashedRefreshToken, refresh_token);
+    const rt_match = await argon2.verify(user.hashedRefreshToken, refresh_token);
     if (!rt_match) throw new UnauthorizedException();
 
     const tokens = await this.getTokens(user.id, user.email);
@@ -73,7 +73,7 @@ export class AuthService {
   }
 
   hashData(data: string) {
-    return hash(data);
+    return argon2.hash(data);
   }
 
   async getTokens(userId: string, email: string): Promise<Tokens> {
