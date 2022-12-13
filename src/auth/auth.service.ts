@@ -10,7 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UserService } from '@models/user/user.service';
 import { Tokens } from './@types/tokens.type';
 
-const HASH_SALT_ROUNDS = 8
+const HASH_SALT_ROUNDS = 8;
 
 @Injectable()
 export class AuthService {
