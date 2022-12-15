@@ -5,12 +5,11 @@ import { CreateUserDto } from './../models/user/dto/create-user.dto';
 import { ConfigService } from '@nestjs/config';
 import { UnauthorizedException, Injectable } from '@nestjs/common';
 import { AuthDto } from './dto/auth.dto';
-import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '@models/user/user.service';
 import { Tokens } from './@types/tokens.type';
+import { hash, verify } from 'argon2';
 
-const HASH_SALT_ROUNDS = 8;
 
 @Injectable()
 export class AuthService {
@@ -35,7 +34,8 @@ export class AuthService {
 
     if (!user) throw new LoginFailedException();
 
-    const password_match = await compare(authInfo.password, user.password);
+    const password_match = await verify(user.password, authInfo.password);
+    
     if (!password_match) throw new LoginFailedException();
 
     const tokens = await this.getTokens(user.id, user.email);
@@ -55,7 +55,7 @@ export class AuthService {
     if (!user || !user.hashedRefreshToken)
       throw new NotFoundException('User not found');
 
-    const rt_match = await compare(refresh_token, user.hashedRefreshToken);
+    const rt_match = await verify(user.hashedRefreshToken, refresh_token);
     if (!rt_match) throw new UnauthorizedException();
 
     const tokens = await this.getTokens(user.id, user.email);
@@ -75,7 +75,7 @@ export class AuthService {
   }
 
   async hashData(data: string) {
-    return await hash(data, HASH_SALT_ROUNDS);
+    return await hash(data);
   }
 
   async getTokens(userId: string, email: string): Promise<Tokens> {

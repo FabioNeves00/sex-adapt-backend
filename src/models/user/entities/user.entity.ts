@@ -11,7 +11,6 @@ import {
   OneToOne
 } from 'typeorm';
 import { ReviewEntity } from './../../review/entities/review.entity';
-import { hash } from 'bcrypt';
 import { BaseEntity } from './../../base/entities/base-entity.entity';
 import { IUserEntity } from './../interfaces/user.interface';
 import { SuportEntity } from '@models/suport/entities/suport.entity';
@@ -22,10 +21,10 @@ export class UserEntity extends BaseEntity implements IUserEntity {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ length: 80, type: 'varchar' })
   password: string;
 
-  @Column()
+  @Column({ length: 120, type: 'varchar' })
   name: string;
 
   @OneToOne(
@@ -56,14 +55,4 @@ export class UserEntity extends BaseEntity implements IUserEntity {
 
   @Column({ nullable: true })
   hashedRefreshToken: string;
-
-  @BeforeInsert()
-  async hashPassword() {
-    this.password = await hash(this.password, 8);
-  }
-
-  @BeforeUpdate()
-  async updatePassword() {
-    this.password = await hash(this.password, 8);
-  }
 }
