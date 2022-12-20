@@ -24,7 +24,7 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
 
   await app.listen(3000, () => {
-    console.log('Listening on localhost:3000');
+    console.log('Listening on localhost:8080');
   });
 }
 bootstrap();
