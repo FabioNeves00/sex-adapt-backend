@@ -26,11 +26,6 @@ export class SuportController {
     return await this.suportService.create(userId, createSuportDto);
   }
 
-  @Get()
-  findAll() {
-    return this.suportService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.suportService.findOneOrFail({ where: { id } });
