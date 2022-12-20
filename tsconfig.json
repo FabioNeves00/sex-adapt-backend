@@ -31,6 +31,6 @@
       "@base/*": ["src/models/base/*"],
       "@review/*": ["src/models/review/*"],
       "@authentication": ["src/authentication/index"]
-    }
+    },
   }
 }

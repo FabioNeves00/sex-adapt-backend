@@ -19,7 +19,6 @@ export class FavoriteService {
       where: { id },
       relations: ['favorites']
     });
-    console.log(user);
 
     return user.favorites;
   }
