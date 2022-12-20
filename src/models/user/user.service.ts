@@ -5,6 +5,7 @@ import { FindOneOptions, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
+import { hash } from 'argon2';
 
 @Injectable()
 export class UserService {
@@ -83,6 +84,9 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
+    if(updateUserDto.password) {
+      updateUserDto.password = await hash(updateUserDto.password)
+    }
     const user = await this.findOneOrFail({ where: { id } });
     this.usersRepository.merge(user, updateUserDto);
     return await this.usersRepository.save(user);

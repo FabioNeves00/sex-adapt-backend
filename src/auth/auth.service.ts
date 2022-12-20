@@ -9,6 +9,8 @@ import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '@models/user/user.service';
 import { Tokens } from './@types/tokens.type';
+import { hash, verify } from 'argon2';
+
 
 @Injectable()
 export class AuthService {
@@ -32,7 +34,6 @@ export class AuthService {
     const user = await this.userService.findOneByEmail(authInfo.email);
 
     if (!user) throw new LoginFailedException();
-
     const password_match = await argon2.verify(
       user.password,
       authInfo.password
