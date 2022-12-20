@@ -6,13 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AccessTokenGuard } from '@guards/access-token.guard';
-import { MailModule } from './services/mail/mail.module';
 import { ReviewModule } from './models/review/review.module';
 import { SuportModule } from './models/suport/suport.module';
-import { RecoverPasswordModule } from '@providers/recover-password/recover-password.module';
 import { EstablishmentModule } from './models/establishment/establishment.module';
-import { SuggestionService } from './providers/suggestion/suggestion.service';
-import { SuggestionModule } from './providers/suggestion/suggestion.module';
 import { FavoriteModule } from './providers/favorite/favorite.module';
 
 @Module({

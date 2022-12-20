@@ -9,9 +9,8 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  UseGuards
 } from '@nestjs/common';
-import { GetCurrentUserId, Public } from 'src/common/decorators';
+import { GetCurrentUserId } from 'src/common/decorators';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Support Routes')

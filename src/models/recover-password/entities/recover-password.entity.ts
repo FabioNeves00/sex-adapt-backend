@@ -1,7 +1,6 @@
 import { StatusType } from './../interfaces/status.type';
 import { generateRandomDigits } from './../../../utils/generateRandomDigits.util';
 import { IRecoverPassword } from './../interfaces/recover-password.interface';
-import { BaseEntity } from '@models/base';
 import {
   BeforeInsert,
   Column,
