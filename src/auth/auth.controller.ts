@@ -16,7 +16,9 @@ import {
   GetCurrentUserId,
   GetCurrentUser
 } from 'src/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Auth Routes')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

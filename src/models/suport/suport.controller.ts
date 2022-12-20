@@ -9,10 +9,11 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  UseGuards
 } from '@nestjs/common';
-import { GetCurrentUserId, Public } from 'src/common/decorators';
+import { GetCurrentUserId } from 'src/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Support Routes')
 @Controller('suport')
 export class SuportController {
   constructor(private readonly suportService: SuportService) {}
@@ -24,11 +25,6 @@ export class SuportController {
     @Body() createSuportDto: CreateSuportDto
   ) {
     return await this.suportService.create(userId, createSuportDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.suportService.findAll();
   }
 
   @Get(':id')

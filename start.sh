@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "### STARTING SETUP WHAT IF ###"
+echo "### STARTING SETUP SEX ADAPT ###"
 
 echo "### VARIABLES ###"
 source variables.sh
