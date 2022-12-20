@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { UserService } from '../../models/user/user.service';
-import { EstablishmentService } from '@models/establishment/establishment.service';
 import { FavoriteException } from '../../common/exceptions/favorite.exception';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
