@@ -13,11 +13,11 @@
 - [Bash](https://git-scm.com/downloads)
 
 ## Setup after installing [docker](https://www.docker.com/):
-	### If you want to load on docker:
-		1.  `sudo docker compose up`
-	### If you want to start local:
-		1. `bash ./start.sh` (Check [Known Errors](#known-errors))
-		2. `yarn install @nestjs/cli && yarn`
+### If you want to load on docker:
+	1.  `sudo docker compose up` or `docker compose up`
+### If you want to start local:
+	1. `bash ./start.sh` (Check [Known Errors](#known-errors))
+	2. `yarn install @nestjs/cli && yarn`
 
 ## Docker infos:
 	Docker will be running on port 5432 (default)
