@@ -11,7 +11,6 @@ import { UserService } from '@models/user/user.service';
 import { Tokens } from './@types/tokens.type';
 import { hash, verify } from 'argon2';
 
-
 @Injectable()
 export class AuthService {
   constructor(

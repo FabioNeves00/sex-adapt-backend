@@ -8,7 +8,7 @@ import {
   Param,
   Delete,
   HttpCode,
-  HttpStatus,
+  HttpStatus
 } from '@nestjs/common';
 import { GetCurrentUserId } from 'src/common/decorators';
 import { ApiTags } from '@nestjs/swagger';

@@ -1,5 +1,9 @@
 import { AccessibilityEntity } from './../accessibility/entities/accessibility.entity';
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -29,7 +33,7 @@ export class UserService {
       delete saved.password;
       return saved;
     } catch (error) {
-      throw new UnauthorizedException("E-mail already in use. Try to login")
+      throw new UnauthorizedException('E-mail already in use. Try to login');
     }
   }
 
@@ -84,8 +88,8 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    if(updateUserDto.password) {
-      updateUserDto.password = await hash(updateUserDto.password)
+    if (updateUserDto.password) {
+      updateUserDto.password = await hash(updateUserDto.password);
     }
     const user = await this.findOneOrFail({ where: { id } });
     this.usersRepository.merge(user, updateUserDto);
