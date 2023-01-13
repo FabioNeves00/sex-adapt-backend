@@ -3,7 +3,8 @@ services:
     api:
         build:
             context: .
-            dockerfile: Dockerfile.api
+            dockerfile: Dockerfile
+            target: api
         depends_on: 
             - db
         environment:
@@ -25,7 +26,8 @@ services:
     db:
         build:
             context: .
-            dockerfile: Dockerfile.database
+            dockerfile: dockerfile
+            target: db
         ports:
             - "35000:5432"
         networks:

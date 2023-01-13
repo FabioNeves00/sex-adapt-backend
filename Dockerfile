@@ -1,4 +1,4 @@
-FROM node:16.18.1-alpine
+FROM node:16.18.1-alpine as api
 
 WORKDIR /app
 
@@ -14,3 +14,6 @@ RUN npm i --global @nestjs/cli
 
 CMD [ "npm", "run", "start:dev" ]
 
+FROM postgres AS db
+
+COPY ./src/migrations/init.sql /docker-entrypoint-initdb.d/

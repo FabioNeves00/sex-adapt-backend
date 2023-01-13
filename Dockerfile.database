@@ -1,3 +1,0 @@
-FROM postgres AS db_sexadapt
-
-COPY ./src/migrations/init.sql /docker-entrypoint-initdb.d/
