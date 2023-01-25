@@ -9,7 +9,12 @@ export interface IEstablishmentEntity extends IBaseEntity {
   price: number;
   category: string;
   website?: string;
-  address?: string;
+  address: {
+    street: string;
+    number: string;
+    complement: string;
+    cep: string;
+  };
   ground_floor_room: boolean;
   latitude: number;
   longitude: number;

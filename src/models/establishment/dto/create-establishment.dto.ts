@@ -47,10 +47,19 @@ export class CreateEstablishmentDto {
   @IsString({ message: HttpCustomMessages.VALIDATION.WEBSITE.INVALID })
   website: string;
 
-  @IsOptional()
-  @IsNotEmpty({ message: HttpCustomMessages.VALIDATION.ADDRESS.REQUIRED })
-  @IsString({ message: HttpCustomMessages.VALIDATION.ADDRESS.INVALID })
-  address: string;
+  @IsObject({ message: HttpCustomMessages.VALIDATION.ADDRESS.INVALID })
+  @IsDefined()
+  @IsNotEmptyObject(
+    { nullable: false },
+    { message: HttpCustomMessages.VALIDATION.ADDRESS.REQUIRED }
+  )
+  @ValidateNested({ each: true })
+  address: {
+    street: string;
+    number: string;
+    complement: string;
+    cep: string;
+  };
 
   @IsBoolean({
     message: HttpCustomMessages.VALIDATION.GROUND_FLOOR_ROOM.INVALID
