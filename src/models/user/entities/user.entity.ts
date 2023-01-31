@@ -1,7 +1,6 @@
 import { AccessibilityEntity } from './../../accessibility/entities/accessibility.entity';
 import {
   BeforeInsert,
-  BeforeUpdate,
   Column,
   Entity,
   JoinColumn,
@@ -21,7 +20,7 @@ export class UserEntity extends BaseEntity implements IUserEntity {
   @Column({ unique: true })
   email: string;
 
-  @Column({ length: 80, type: 'varchar' })
+  @Column({ type: 'varchar' })
   password: string;
 
   @Column({ length: 120, type: 'varchar' })
