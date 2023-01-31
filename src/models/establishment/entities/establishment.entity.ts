@@ -34,8 +34,13 @@ export class EstablishmentEntity
   @Column({ default: '' })
   website?: string;
 
-  @Column()
-  address: string;
+  @Column({ type: 'json' })
+  address: {
+    street: string;
+    number: string;
+    complement: string;
+    cep: string;
+  };
 
   @Column()
   ground_floor_room: boolean;

@@ -12,15 +12,31 @@
 - [NestJS/cli](https://docs.nestjs.com/cli/overview)
 - [Bash](https://git-scm.com/downloads)
 
+## Setup without docker:
+	Step 1. sudo su -U postgres psql
+	Step 2. CREATE DATABASE sex_adapt;
+	Step 3.	CREATE USER sexadapt WITH PASSWORD 'sexadapt';
+	Step 4.	GRANT ALL PRIVILEGES ON DATABASE sex_adapt TO sexadapt;
+	
+## Postgres info:
+	Docker will be running on port 5432 (default)
+	Docker container default name is sex-adapt-backend-db
+
 ## Setup after installing [docker](https://www.docker.com/):
 ### If you want to load on docker:
-	1.  `sudo docker compose up` or `docker compose up`
+	1.  sudo docker compose up or docker compose up
 ### If you want to start local:
-	1. `bash ./start.sh` (Check [Known Errors](#known-errors))
-	2. `yarn install @nestjs/cli && yarn`
+	1. bash ./start.sh
+	2. yarn install @nestjs/cli && yarn
 
-## Docker infos:
+## Local database infos:
+	Docker will be running on host localhost (default)
 	Docker will be running on port 5432 (default)
+	Docker container default name is postgres-sex-adapt
+	
+## Docker database infos:
+	Docker will be running on host db (default)
+	Docker will be running on port 35000 (default)
 	Docker container default name is sex-adapt-backend-db
 
 ## Known Errors:
