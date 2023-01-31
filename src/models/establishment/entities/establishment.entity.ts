@@ -1,8 +1,16 @@
 import { AccessibilityEntity } from '@models/accessibility/entities/accessibility.entity';
-import { Column, Entity, JoinColumn, ManyToMany, OneToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  OneToMany,
+  OneToOne
+} from 'typeorm';
 import { BaseEntity } from '../../base/entities/base-entity.entity';
 import { IEstablishmentEntity } from '../interfaces/establishment.interface';
 import { UserEntity } from '../../user/entities/user.entity';
+import { ReviewEntity } from '../../review/entities/review.entity';
 
 @Entity({ name: 'establishments' })
 export class EstablishmentEntity
@@ -62,4 +70,9 @@ export class EstablishmentEntity
 
   @Column({ default: '' })
   whatsapp?: string;
+
+  @OneToMany(() => ReviewEntity, (review) => review.establishment, {
+    eager: true
+  })
+  reviews: ReviewEntity[];
 }

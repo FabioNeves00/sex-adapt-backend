@@ -27,7 +27,7 @@ export class CreateReviewDto {
   })
   comment: string;
 
-  // @IsNotEmpty()
-  // @IsString()
-  // establishmentId: string
+  @IsNotEmpty()
+  @IsString()
+  establishmentId: string;
 }
