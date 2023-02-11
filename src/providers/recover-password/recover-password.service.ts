@@ -57,9 +57,10 @@ export class RecoverPasswordService {
         email: confirmTokenDto.email
       }
     });
-    if (recover.createdAt.getMinutes() > recover.createdAt.getMinutes() + 10)
+    if (recover.createdAt.getMinutes() > recover.createdAt.getMinutes() + 10) {
+      await this.create({ email: confirmTokenDto.email });
       throw new RecoverException(HttpCustomMessages.RECOVER.EXPIRED);
-
+    }
     if (!recover)
       throw new RecoverException(HttpCustomMessages.RECOVER.NOT_FOUND);
     if (!(recover.token === confirmTokenDto.token))
