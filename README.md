@@ -3,6 +3,7 @@
 ## Links:
 - [Diagrama UML](https://www.figma.com/file/Cd2JEqC6xwE6xUdFibFOoG/Back-end-Diagrama-ER?node-id=0%3A1)
 - [Diagrama de Rotas](https://www.figma.com/file/V9Jp8f1AIjtT0KH4WPcwsm/Back-End-Routes)
+- [Insomnia file](Insomnia_2023-02-09.json)
 
 ## Dependencies:
 
