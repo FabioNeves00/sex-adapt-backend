@@ -12,6 +12,7 @@ export const HttpCustomMessages = {
   RECOVER: {
     NOT_FOUND: 'Recuperação não encontrada.',
     IN_PROGRESS: 'Recuperação em andamento.',
+    EXPIRED: 'Token de recuperação expirou.',
     PENDING_CONFIRMATION: 'Por favor confirme o código enviado para seu email.',
     TOKEN: {
       INVALID: 'Token de recuperação inválido.',

@@ -26,6 +26,7 @@ export class RecoverPasswordService {
       const existsRecover = await this.recoverRepository.findOne({
         where: { email: createRecoverPasswordDto.email }
       });
+
       if (existsRecover)
         throw new RecoverException(HttpCustomMessages.RECOVER.IN_PROGRESS);
 
@@ -56,6 +57,8 @@ export class RecoverPasswordService {
         email: confirmTokenDto.email
       }
     });
+    if (recover.createdAt.getMinutes() > recover.createdAt.getMinutes() + 10)
+      throw new RecoverException(HttpCustomMessages.RECOVER.EXPIRED);
 
     if (!recover)
       throw new RecoverException(HttpCustomMessages.RECOVER.NOT_FOUND);
@@ -88,9 +91,16 @@ export class RecoverPasswordService {
     });
 
     if (!user) throw new NotFoundException(HttpCustomMessages.USER.NOT_FOUND);
+
     await this.recoverRepository.delete({ email: changePasswordDto.email });
-    return await this.userService.update(user.id, {
+
+    const updatedUser = await this.userService.update(user.id, {
       password: changePasswordDto.password
     });
+    delete updatedUser.createdAt;
+    delete updatedUser.updatedAt;
+    delete updatedUser.password;
+    delete updatedUser.hashedRefreshToken;
+    return updatedUser;
   }
 }
