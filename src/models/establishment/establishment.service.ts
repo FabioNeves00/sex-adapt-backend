@@ -31,7 +31,7 @@ export class EstablishmentService {
 
   async findAll() {
     return await this.establishmentRepository.find({
-      relations: ['accessibilities']
+      relations: ['accessibilities', 'favorites', 'reviews']
     });
   }
 
@@ -47,15 +47,16 @@ export class EstablishmentService {
           tactile_floor: accessibilities.tactile_floor,
           uneeveness: accessibilities.uneeveness
         }
-      }
+      },
+      relations: ['accessibilities', 'favorites', 'reviews']
     });
   }
 
   async findOneOrFail(options: FindOneOptions<EstablishmentEntity>) {
     try {
-      return await this.establishmentRepository.findOneOrFail({
+      const establishment = await this.establishmentRepository.findOneOrFail({
         ...options,
-        relations: ['accessibilities', 'favorites'],
+        relations: ['accessibilities', 'favorites', 'reviews'],
         select: {
           accessibilities: {
             bar: true,
@@ -68,6 +69,15 @@ export class EstablishmentService {
           }
         }
       });
+
+      let stars = 0;
+      establishment.reviews.forEach((review) => {
+        stars += review.grade;
+      });
+
+      stars = stars / establishment.reviews.length;
+
+      return { ...establishment, stars };
     } catch (error) {
       throw new NotFoundException(HttpCustomMessages.ESTABLISHMENT.NOT_FOUND);
     }
