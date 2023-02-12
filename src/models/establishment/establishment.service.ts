@@ -6,6 +6,7 @@ import { CreateEstablishmentDto } from './dto/create-establishment.dto';
 import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { EstablishmentEntity } from './entities/establishment.entity';
 import { HttpCustomMessages } from '../../common/helpers/exceptions/messages/index.messages';
+import { getEstablishmentStars } from '../../utils/getEstablishmentStars';
 
 @Injectable()
 export class EstablishmentService {
@@ -30,13 +31,17 @@ export class EstablishmentService {
   }
 
   async findAll() {
-    return await this.establishmentRepository.find({
-      relations: ['accessibilities']
+    const establishments = await this.establishmentRepository.find({
+      relations: ['accessibilities', 'favorites', 'reviews']
     });
+    const establishmentsWithStars = establishments.map((establishment) => {
+      return { ...establishment, stars: getEstablishmentStars(establishment) };
+    });
+    return establishmentsWithStars;
   }
 
   async findByAccessibilities(accessibilities: AccessibilityEntity) {
-    return await this.establishmentRepository.find({
+    const establishments = await this.establishmentRepository.find({
       where: {
         accessibilities: {
           bar: accessibilities.bar,
@@ -47,15 +52,20 @@ export class EstablishmentService {
           tactile_floor: accessibilities.tactile_floor,
           uneeveness: accessibilities.uneeveness
         }
-      }
+      },
+      relations: ['accessibilities', 'favorites', 'reviews']
     });
+    const establishmentsWithStars = establishments.map((establishment) => {
+      return { ...establishment, stars: getEstablishmentStars(establishment) };
+    });
+    return establishmentsWithStars;
   }
 
   async findOneOrFail(options: FindOneOptions<EstablishmentEntity>) {
     try {
-      return await this.establishmentRepository.findOneOrFail({
+      const establishment = await this.establishmentRepository.findOneOrFail({
         ...options,
-        relations: ['accessibilities', 'favorites'],
+        relations: ['accessibilities', 'favorites', 'reviews'],
         select: {
           accessibilities: {
             bar: true,
@@ -68,6 +78,8 @@ export class EstablishmentService {
           }
         }
       });
+
+      return { ...establishment, stars: getEstablishmentStars(establishment) };
     } catch (error) {
       throw new NotFoundException(HttpCustomMessages.ESTABLISHMENT.NOT_FOUND);
     }
