@@ -28,10 +28,16 @@ export class UserService {
         createUserDto.accessibilities
       );
       user.accessibilities = accessibility;
-      accessibility.user = user;
+      // accessibility.user = user;
       await this.accessibilityRepository.save(accessibility);
       const saved = await this.usersRepository.save(user);
       delete saved.password;
+      delete saved.createdAt;
+      delete saved.updatedAt;
+      delete saved.hashedRefreshToken;
+      delete saved.accessibilities.id;
+      delete saved.accessibilities.updatedAt;
+      delete saved.accessibilities.createdAt;
       return saved;
     } catch (error) {
       throw new UnauthorizedException('E-mail already in use. Try to login');
