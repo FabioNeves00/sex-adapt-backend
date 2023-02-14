@@ -32,7 +32,7 @@ export class EstablishmentService {
 
   async findAll() {
     const establishments = await this.establishmentRepository.find({
-      relations: ['accessibilities', 'favorites', 'reviews']
+      relations: ['accessibilities', 'reviews']
     });
     const establishmentsWithStars = establishments.map((establishment) => {
       return { ...establishment, stars: getEstablishmentStars(establishment) };
@@ -53,7 +53,7 @@ export class EstablishmentService {
           uneeveness: accessibilities.uneeveness
         }
       },
-      relations: ['accessibilities', 'favorites', 'reviews']
+      relations: ['accessibilities', 'reviews']
     });
     const establishmentsWithStars = establishments.map((establishment) => {
       return { ...establishment, stars: getEstablishmentStars(establishment) };
@@ -65,7 +65,7 @@ export class EstablishmentService {
     try {
       const establishment = await this.establishmentRepository.findOneOrFail({
         ...options,
-        relations: ['accessibilities', 'favorites', 'reviews'],
+        relations: ['accessibilities', 'reviews'],
         select: {
           accessibilities: {
             bar: true,
