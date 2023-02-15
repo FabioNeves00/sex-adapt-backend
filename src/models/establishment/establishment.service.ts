@@ -27,7 +27,14 @@ export class EstablishmentService {
     });
     establishment.accessibilities = accessibility;
     await this.accessibilityRepository.save(accessibility);
-    return await this.establishmentRepository.save(establishment);
+    const saved = await this.establishmentRepository.save(establishment);
+    delete saved.createdAt;
+    delete saved.updatedAt;
+    delete saved.accessibilities.createdAt;
+    delete saved.accessibilities.updatedAt;
+    delete saved.accessibilities.establishment;
+    delete saved.accessibilities.id;
+    return saved;
   }
 
   async findAll() {
@@ -35,8 +42,15 @@ export class EstablishmentService {
       relations: ['accessibilities', 'reviews']
     });
     const establishmentsWithStars = establishments.map((establishment) => {
+      delete establishment.createdAt;
+      delete establishment.updatedAt;
+      delete establishment.accessibilities.createdAt;
+      delete establishment.accessibilities.updatedAt;
+      delete establishment.accessibilities.establishment;
+      delete establishment.accessibilities.id;
       return { ...establishment, stars: getEstablishmentStars(establishment) };
     });
+
     return establishmentsWithStars;
   }
 
@@ -56,6 +70,12 @@ export class EstablishmentService {
       relations: ['accessibilities', 'reviews']
     });
     const establishmentsWithStars = establishments.map((establishment) => {
+      delete establishment.createdAt;
+      delete establishment.updatedAt;
+      delete establishment.accessibilities.createdAt;
+      delete establishment.accessibilities.updatedAt;
+      delete establishment.accessibilities.establishment;
+      delete establishment.accessibilities.id;
       return { ...establishment, stars: getEstablishmentStars(establishment) };
     });
     return establishmentsWithStars;
@@ -78,8 +98,18 @@ export class EstablishmentService {
           }
         }
       });
+      const establishmentsWithStars = {
+        ...establishment,
+        stars: getEstablishmentStars(establishment)
+      };
+      delete establishmentsWithStars.createdAt;
+      delete establishmentsWithStars.updatedAt;
+      delete establishmentsWithStars.accessibilities.createdAt;
+      delete establishmentsWithStars.accessibilities.updatedAt;
+      delete establishmentsWithStars.accessibilities.establishment;
+      delete establishmentsWithStars.accessibilities.id;
 
-      return { ...establishment, stars: getEstablishmentStars(establishment) };
+      return establishmentsWithStars;
     } catch (error) {
       throw new NotFoundException(HttpCustomMessages.ESTABLISHMENT.NOT_FOUND);
     }
