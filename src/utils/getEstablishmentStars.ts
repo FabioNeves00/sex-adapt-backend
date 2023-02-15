@@ -6,5 +6,5 @@ export function getEstablishmentStars(establishment: EstablishmentEntity) {
     stars += review.grade;
   });
 
-  return stars / establishment.reviews.length;
+  return stars / establishment.reviews.length || 0;
 }
