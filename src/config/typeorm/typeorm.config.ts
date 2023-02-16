@@ -17,6 +17,10 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       entities: [join(__dirname, '..', '**', '*.entity.{ts,js}')],
       autoLoadEntities: true,
 
+      extra: {
+        ssl: this.configService.get('SSL_MODE') || false
+      },
+
       synchronize: true
     };
   }
