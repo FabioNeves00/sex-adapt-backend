@@ -11,9 +11,10 @@ import {
   HttpStatus
 } from '@nestjs/common';
 import { GetCurrentUserId } from 'src/common/decorators';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Support Routes')
+@ApiBearerAuth()
 @Controller('suport')
 export class SuportController {
   constructor(private readonly suportService: SuportService) {}
