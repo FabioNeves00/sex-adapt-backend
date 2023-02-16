@@ -21,6 +21,7 @@ async function bootstrap() {
     .setTitle('Sex-adapt')
     .setDescription('API Routes and data')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);

@@ -31,7 +31,6 @@ export class UserService {
       // accessibility.user = user;
       await this.accessibilityRepository.save(accessibility);
       const saved = await this.usersRepository.save(user);
-      delete saved.password;
       delete saved.createdAt;
       delete saved.updatedAt;
       delete saved.hashedRefreshToken;
@@ -72,7 +71,6 @@ export class UserService {
       },
       relations: ['reviews', 'accessibilities', 'suports', 'favorites']
     });
-    delete user.password;
     delete user.createdAt;
     delete user.updatedAt;
     delete user.hashedRefreshToken;

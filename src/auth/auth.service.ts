@@ -26,6 +26,7 @@ export class AuthService {
     const tokens = await this.getTokens(new_user.id, new_user.email);
     await this.updateRtHash(new_user.id, tokens.refresh_token);
 
+    delete new_user.password;
     return { user: new_user, tokens };
   }
 
@@ -41,6 +42,7 @@ export class AuthService {
 
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refresh_token);
+    delete user.password;
 
     return { user, tokens };
   }

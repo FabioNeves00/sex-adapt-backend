@@ -16,7 +16,7 @@ import {
   GetCurrentUserId,
   GetCurrentUser
 } from 'src/common/decorators';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth Routes')
 @Controller('auth')
@@ -38,6 +38,7 @@ export class AuthController {
   }
 
   @Post('logout')
+  @ApiBearerAuth()
   @HttpCode(HttpStatus.OK)
   logout(@GetCurrentUserId() userId: string) {
     return this.authService.logout(userId);
@@ -45,6 +46,7 @@ export class AuthController {
 
   @UseGuards(RefreshTokenGuard)
   @Post('refresh')
+  @ApiBearerAuth()
   @HttpCode(HttpStatus.OK)
   refresh_token(
     @GetCurrentUserId() userId: string,
