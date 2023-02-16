@@ -1,18 +1,16 @@
-FROM node:16.18.1-alpine as api
+FROM node:lts-alpine as api
 
 WORKDIR /app
 
-COPY ["package*.json", "./"]
+COPY . /app
 
 RUN npm install --legacy-peer-deps
 
-COPY . .
+RUN npm run build
 
-EXPOSE 8080
+USER 1000
 
-RUN npm i --global @nestjs/cli
-
-CMD [ "npm", "run", "start:dev" ]
+CMD ["npm", "run", "start:prod"]
 
 FROM postgres AS db
 
