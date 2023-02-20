@@ -64,7 +64,7 @@ export class EstablishmentService {
           sign_language: accessibilities.sign_language,
           braille: accessibilities.braille,
           tactile_floor: accessibilities.tactile_floor,
-          uneeveness: accessibilities.uneeveness
+          unevenness: accessibilities.unevenness
         }
       },
       relations: ['accessibilities', 'reviews']
@@ -94,7 +94,7 @@ export class EstablishmentService {
             incompatible_dimensions: true,
             sign_language: true,
             tactile_floor: true,
-            uneeveness: true
+            unevenness: true
           }
         }
       });

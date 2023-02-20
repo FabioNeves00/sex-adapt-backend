@@ -7,7 +7,7 @@ export interface IAccessibilityEntity extends IBaseEntity {
   establishment: IEstablishmentEntity | null;
   elevator: boolean;
   bar: boolean;
-  uneeveness: boolean;
+  unevenness: boolean;
   incompatible_dimensions: boolean;
   sign_language: boolean;
   tactile_floor: boolean;

@@ -31,7 +31,7 @@ export class AccessibilityEntity
   @Column()
   bar: boolean;
   @Column()
-  uneeveness: boolean;
+  unevenness: boolean;
   @Column()
   incompatible_dimensions: boolean;
   @Column()
