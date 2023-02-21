@@ -1,5 +1,10 @@
-import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
-import { IUserEntity } from '../../user/interfaces/user.interface';
+import {
+  IsBoolean,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUUID
+} from 'class-validator';
 
 export class CreateSuggestEstablishmentDto {
   @IsString()
@@ -23,10 +28,14 @@ export class CreateSuggestEstablishmentDto {
   price: string;
 
   @IsBoolean()
+  ground_floor_room: boolean;
+
+  @IsBoolean()
   isInPlace: boolean;
 
   @IsString()
   @IsNotEmpty()
+  @IsOptional()
   website: string;
 
   @IsBoolean()

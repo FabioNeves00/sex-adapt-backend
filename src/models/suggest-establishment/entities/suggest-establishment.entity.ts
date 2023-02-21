@@ -34,6 +34,9 @@ export class SuggestEstablishmentEntity
   isInPlace: boolean;
 
   @Column()
+  ground_floor_room: boolean;
+
+  @Column()
   elevator: boolean;
 
   @Column()

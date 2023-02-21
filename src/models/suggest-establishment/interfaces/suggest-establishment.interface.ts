@@ -14,6 +14,7 @@ export interface ISuggestEstablishmentEntity extends IBaseEntity {
   bar: boolean;
   unevenness: boolean;
   incompatible_dimensions: boolean;
+  ground_floor_room: boolean;
   sign_language: boolean;
   tactile_floor: boolean;
   braille: boolean;
