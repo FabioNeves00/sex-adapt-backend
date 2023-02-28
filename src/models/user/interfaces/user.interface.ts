@@ -3,6 +3,7 @@ import { IBaseEntity } from './../../base/interfaces/base-entity.interface';
 import { ISuportEntity } from './../../suport/interfaces/suport.interface';
 import { IReviewEntity } from '@review/interfaces/review.interface';
 import { IEstablishmentEntity } from '@models/establishment/interfaces/establishment.interface';
+import { ISuggestEstablishmentEntity } from '../../suggest-establishment/interfaces/suggest-establishment.interface';
 
 export interface IUserEntity extends IBaseEntity {
   email: string;
@@ -13,4 +14,5 @@ export interface IUserEntity extends IBaseEntity {
   accessibilities: IAccessibilityEntity;
   favorites: IEstablishmentEntity[] | string[];
   suports: ISuportEntity[];
+  suggetions: ISuggestEstablishmentEntity[];
 }

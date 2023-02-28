@@ -14,6 +14,7 @@ import { BaseEntity } from './../../base/entities/base-entity.entity';
 import { IUserEntity } from './../interfaces/user.interface';
 import { SuportEntity } from '@models/suport/entities/suport.entity';
 import { EstablishmentEntity } from '../../establishment/entities/establishment.entity';
+import { SuggestEstablishmentEntity } from '../../suggest-establishment/entities/suggest-establishment.entity';
 
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity implements IUserEntity {
@@ -51,6 +52,14 @@ export class UserEntity extends BaseEntity implements IUserEntity {
   )
   @JoinTable({ name: 'favorites' })
   favorites: EstablishmentEntity[];
+
+  @OneToMany(
+    () => SuggestEstablishmentEntity,
+    (suggestion) => suggestion.suggestedBy,
+    { cascade: true }
+  )
+  @JoinColumn({ name: 'suggestion_id' })
+  suggetions: SuggestEstablishmentEntity[];
 
   @Column({ nullable: true })
   hashedRefreshToken: string;

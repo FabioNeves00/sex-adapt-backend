@@ -6,7 +6,7 @@ import { CreateEstablishmentDto } from './dto/create-establishment.dto';
 import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { EstablishmentEntity } from './entities/establishment.entity';
 import { HttpCustomMessages } from '../../common/helpers/exceptions/messages/index.messages';
-import { getEstablishmentStars } from '../../utils/getEstablishmentStars';
+import { getEstablishmentRating } from '../../utils/getEstablishmentRating';
 
 @Injectable()
 export class EstablishmentService {
@@ -41,17 +41,20 @@ export class EstablishmentService {
     const establishments = await this.establishmentRepository.find({
       relations: ['accessibilities', 'reviews']
     });
-    const establishmentsWithStars = establishments.map((establishment) => {
+    const establishmentsWithRating = establishments.map((establishment) => {
       delete establishment.createdAt;
       delete establishment.updatedAt;
       delete establishment.accessibilities.createdAt;
       delete establishment.accessibilities.updatedAt;
       delete establishment.accessibilities.establishment;
       delete establishment.accessibilities.id;
-      return { ...establishment, stars: getEstablishmentStars(establishment) };
+      return {
+        ...establishment,
+        rating: getEstablishmentRating(establishment)
+      };
     });
 
-    return establishmentsWithStars;
+    return establishmentsWithRating;
   }
 
   async findByAccessibilities(accessibilities: AccessibilityEntity) {
@@ -64,21 +67,24 @@ export class EstablishmentService {
           sign_language: accessibilities.sign_language,
           braille: accessibilities.braille,
           tactile_floor: accessibilities.tactile_floor,
-          uneeveness: accessibilities.uneeveness
+          unevenness: accessibilities.unevenness
         }
       },
       relations: ['accessibilities', 'reviews']
     });
-    const establishmentsWithStars = establishments.map((establishment) => {
+    const establishmentsWithRating = establishments.map((establishment) => {
       delete establishment.createdAt;
       delete establishment.updatedAt;
       delete establishment.accessibilities.createdAt;
       delete establishment.accessibilities.updatedAt;
       delete establishment.accessibilities.establishment;
       delete establishment.accessibilities.id;
-      return { ...establishment, stars: getEstablishmentStars(establishment) };
+      return {
+        ...establishment,
+        rating: getEstablishmentRating(establishment)
+      };
     });
-    return establishmentsWithStars;
+    return establishmentsWithRating;
   }
 
   async findOneOrFail(options: FindOneOptions<EstablishmentEntity>) {
@@ -94,22 +100,22 @@ export class EstablishmentService {
             incompatible_dimensions: true,
             sign_language: true,
             tactile_floor: true,
-            uneeveness: true
+            unevenness: true
           }
         }
       });
-      const establishmentsWithStars = {
+      const establishmentsWithRating = {
         ...establishment,
-        stars: getEstablishmentStars(establishment)
+        rating: getEstablishmentRating(establishment)
       };
-      delete establishmentsWithStars.createdAt;
-      delete establishmentsWithStars.updatedAt;
-      delete establishmentsWithStars.accessibilities.createdAt;
-      delete establishmentsWithStars.accessibilities.updatedAt;
-      delete establishmentsWithStars.accessibilities.establishment;
-      delete establishmentsWithStars.accessibilities.id;
+      delete establishmentsWithRating.createdAt;
+      delete establishmentsWithRating.updatedAt;
+      delete establishmentsWithRating.accessibilities.createdAt;
+      delete establishmentsWithRating.accessibilities.updatedAt;
+      delete establishmentsWithRating.accessibilities.establishment;
+      delete establishmentsWithRating.accessibilities.id;
 
-      return establishmentsWithStars;
+      return establishmentsWithRating;
     } catch (error) {
       throw new NotFoundException(HttpCustomMessages.ESTABLISHMENT.NOT_FOUND);
     }
