@@ -9,7 +9,7 @@ export class SuggestEstablishmentEntity
   extends BaseEntity
   implements ISuggestEstablishmentEntity
 {
-  @ManyToOne(() => UserEntity, (user) => user.suggetions)
+  @ManyToOne(() => UserEntity, (user) => user.establishment_suggestions)
   suggestedBy: IUserEntity;
 
   @Column({ type: 'varchar' })
