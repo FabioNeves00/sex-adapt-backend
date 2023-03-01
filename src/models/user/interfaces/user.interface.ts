@@ -14,5 +14,5 @@ export interface IUserEntity extends IBaseEntity {
   accessibilities: IAccessibilityEntity;
   favorites: IEstablishmentEntity[] | string[];
   suports: ISuportEntity[];
-  suggetions: ISuggestEstablishmentEntity[];
+  establishment_suggestions: ISuggestEstablishmentEntity[];
 }
