@@ -40,7 +40,10 @@ export class FavoriteService {
     this.userRepository.merge(user, {
       favorites: [...user.favorites, establishment]
     });
-    return await this.userRepository.save(user);
+    const saved = await this.userRepository.save(user);
+    delete saved.password;
+
+    return saved;
   }
 
   async unfavorite(id: string, establishmentId: string) {
@@ -56,6 +59,9 @@ export class FavoriteService {
     });
     user.favorites.splice(user.favorites.indexOf(establishment), 1);
     await this.establishmentRepository.save(establishment);
-    return await this.userRepository.save(user);
+    const saved = await this.userRepository.save(user);
+    delete saved.password;
+
+    return saved;
   }
 }

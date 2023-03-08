@@ -5,9 +5,11 @@ import { AppModule } from './app.module';
 import * as morgan from 'morgan';
 import { Request } from 'express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const configService = app.get<ConfigService>(ConfigService);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalGuards(new AccessTokenGuard(new Reflector()));
   morgan.token('body', (req: Request) => {
@@ -17,14 +19,14 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Sex-adapt')
-    .setDescription('API Routes and datas')
+    .setDescription('API Routes and data')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
-
-  await app.listen(3000, () => {
-    console.log('Listening on localhost:8080');
+  await app.listen(configService.get('PORT'), () => {
+    console.log(`Listening on localhost:${configService.get('PORT')}`);
   });
 }
 bootstrap();

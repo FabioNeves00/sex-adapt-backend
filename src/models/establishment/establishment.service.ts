@@ -6,6 +6,7 @@ import { CreateEstablishmentDto } from './dto/create-establishment.dto';
 import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { EstablishmentEntity } from './entities/establishment.entity';
 import { HttpCustomMessages } from '../../common/helpers/exceptions/messages/index.messages';
+import { getEstablishmentRating } from '../../utils/getEstablishmentRating';
 
 @Injectable()
 export class EstablishmentService {
@@ -26,17 +27,38 @@ export class EstablishmentService {
     });
     establishment.accessibilities = accessibility;
     await this.accessibilityRepository.save(accessibility);
-    return await this.establishmentRepository.save(establishment);
+    const saved = await this.establishmentRepository.save(establishment);
+    delete saved.createdAt;
+    delete saved.updatedAt;
+    delete saved.accessibilities.createdAt;
+    delete saved.accessibilities.updatedAt;
+    delete saved.accessibilities.establishment;
+    delete saved.accessibilities.id;
+    return saved;
   }
 
   async findAll() {
-    return await this.establishmentRepository.find({
-      relations: ['accessibilities']
+    const establishments = await this.establishmentRepository.find({
+      relations: ['accessibilities', 'reviews']
     });
+    const establishmentsWithRating = establishments.map((establishment) => {
+      delete establishment.createdAt;
+      delete establishment.updatedAt;
+      delete establishment.accessibilities.createdAt;
+      delete establishment.accessibilities.updatedAt;
+      delete establishment.accessibilities.establishment;
+      delete establishment.accessibilities.id;
+      return {
+        ...establishment,
+        rating: getEstablishmentRating(establishment)
+      };
+    });
+
+    return establishmentsWithRating;
   }
 
   async findByAccessibilities(accessibilities: AccessibilityEntity) {
-    return await this.establishmentRepository.find({
+    const establishments = await this.establishmentRepository.find({
       where: {
         accessibilities: {
           bar: accessibilities.bar,
@@ -45,17 +67,31 @@ export class EstablishmentService {
           sign_language: accessibilities.sign_language,
           braille: accessibilities.braille,
           tactile_floor: accessibilities.tactile_floor,
-          uneeveness: accessibilities.uneeveness
+          unevenness: accessibilities.unevenness
         }
-      }
+      },
+      relations: ['accessibilities', 'reviews']
     });
+    const establishmentsWithRating = establishments.map((establishment) => {
+      delete establishment.createdAt;
+      delete establishment.updatedAt;
+      delete establishment.accessibilities.createdAt;
+      delete establishment.accessibilities.updatedAt;
+      delete establishment.accessibilities.establishment;
+      delete establishment.accessibilities.id;
+      return {
+        ...establishment,
+        rating: getEstablishmentRating(establishment)
+      };
+    });
+    return establishmentsWithRating;
   }
 
   async findOneOrFail(options: FindOneOptions<EstablishmentEntity>) {
     try {
-      return await this.establishmentRepository.findOneOrFail({
+      const establishment = await this.establishmentRepository.findOneOrFail({
         ...options,
-        relations: ['accessibilities', 'favorites'],
+        relations: ['accessibilities', 'reviews'],
         select: {
           accessibilities: {
             bar: true,
@@ -64,10 +100,22 @@ export class EstablishmentService {
             incompatible_dimensions: true,
             sign_language: true,
             tactile_floor: true,
-            uneeveness: true
+            unevenness: true
           }
         }
       });
+      const establishmentsWithRating = {
+        ...establishment,
+        rating: getEstablishmentRating(establishment)
+      };
+      delete establishmentsWithRating.createdAt;
+      delete establishmentsWithRating.updatedAt;
+      delete establishmentsWithRating.accessibilities.createdAt;
+      delete establishmentsWithRating.accessibilities.updatedAt;
+      delete establishmentsWithRating.accessibilities.establishment;
+      delete establishmentsWithRating.accessibilities.id;
+
+      return establishmentsWithRating;
     } catch (error) {
       throw new NotFoundException(HttpCustomMessages.ESTABLISHMENT.NOT_FOUND);
     }

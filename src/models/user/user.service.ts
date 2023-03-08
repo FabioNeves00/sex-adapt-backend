@@ -28,10 +28,15 @@ export class UserService {
         createUserDto.accessibilities
       );
       user.accessibilities = accessibility;
-      accessibility.user = user;
+      // accessibility.user = user;
       await this.accessibilityRepository.save(accessibility);
       const saved = await this.usersRepository.save(user);
-      delete saved.password;
+      delete saved.createdAt;
+      delete saved.updatedAt;
+      delete saved.hashedRefreshToken;
+      delete saved.accessibilities.id;
+      delete saved.accessibilities.updatedAt;
+      delete saved.accessibilities.createdAt;
       return saved;
     } catch (error) {
       throw new UnauthorizedException('E-mail already in use. Try to login');
@@ -60,21 +65,36 @@ export class UserService {
   }
 
   async findOneById(id: string) {
-    return await this.usersRepository.findOne({
+    const user = await this.usersRepository.findOne({
       where: {
         id
       },
       relations: ['reviews', 'accessibilities', 'suports', 'favorites']
     });
+    delete user.createdAt;
+    delete user.updatedAt;
+    delete user.hashedRefreshToken;
+    delete user.accessibilities.id;
+    delete user.accessibilities.updatedAt;
+    delete user.accessibilities.createdAt;
+    return user;
   }
 
   async findOneByEmail(email: string) {
-    return await this.usersRepository.findOne({
+    const user = await this.usersRepository.findOne({
       where: {
         email
       },
       relations: ['reviews', 'accessibilities', 'suports', 'favorites']
     });
+    delete user.password;
+    delete user.createdAt;
+    delete user.updatedAt;
+    delete user.hashedRefreshToken;
+    delete user.accessibilities.id;
+    delete user.accessibilities.updatedAt;
+    delete user.accessibilities.createdAt;
+    return user;
   }
 
   async findOneOrFail(options: FindOneOptions<UserEntity>) {
@@ -94,7 +114,15 @@ export class UserService {
     }
     const user = await this.findOneOrFail({ where: { id } });
     this.usersRepository.merge(user, updateUserDto);
-    return await this.usersRepository.save(user);
+    const saved = await this.usersRepository.save(user);
+    delete saved.password;
+    delete saved.createdAt;
+    delete saved.updatedAt;
+    delete saved.hashedRefreshToken;
+    delete saved.accessibilities.id;
+    delete saved.accessibilities.updatedAt;
+    delete saved.accessibilities.createdAt;
+    return saved;
   }
 
   async removeById(id: string) {

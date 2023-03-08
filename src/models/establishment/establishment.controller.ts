@@ -11,9 +11,10 @@ import { EstablishmentService } from './establishment.service';
 import { CreateEstablishmentDto } from './dto/create-establishment.dto';
 import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { Public } from '@decorators/*';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Establishment Routes')
+@ApiBearerAuth()
 @Public()
 @Controller('establishment')
 export class EstablishmentController {

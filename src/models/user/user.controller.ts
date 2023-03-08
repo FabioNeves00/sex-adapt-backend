@@ -16,9 +16,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { GetCurrentUserId, Public } from 'src/common/decorators';
 import { SuggestionService } from '@providers/suggestion/suggestion.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('User Routes')
+@ApiBearerAuth()
 @Controller('user')
 export class UserController {
   constructor(
