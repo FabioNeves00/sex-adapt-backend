@@ -20,19 +20,16 @@ export class RecoverController {
   constructor(private recoverService: RecoverPasswordService) {}
 
   @Post()
-  @HttpCode(HttpStatus.OK)
   async recoverPassword(@Body() recoverPasswordDto: CreateRecoverPasswordDto) {
     return await this.recoverService.create(recoverPasswordDto);
   }
 
   @Post('confirm')
-  @HttpCode(HttpStatus.OK)
   async confirmToken(@Body() confirmTokenDto: ConfirmTokenDto) {
     return await this.recoverService.confirmToken(confirmTokenDto);
   }
 
   @Put('changePassword')
-  @HttpCode(HttpStatus.OK)
   async changePassword(@Body() changePasswordDto: ChangePasswordDto) {
     return await this.recoverService.changePassword(changePasswordDto);
   }

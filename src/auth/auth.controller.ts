@@ -25,21 +25,18 @@ export class AuthController {
 
   @Public()
   @Post('local/signup')
-  @HttpCode(HttpStatus.CREATED)
-  signup_local(@Body() createUserDto: CreateUserDto) {
+  signup_local(@Body() createUserDto: CreateUserDto): Promise<Tokens> {
     return this.authService.signup_local(createUserDto);
   }
 
   @Public()
   @Post('local/signin')
-  @HttpCode(HttpStatus.OK)
-  signin_local(@Body() authDto: AuthDto) {
+  signin_local(@Body() authDto: AuthDto): Promise<Tokens> {
     return this.authService.signin_local(authDto);
   }
 
   @Post('logout')
   @ApiBearerAuth()
-  @HttpCode(HttpStatus.OK)
   logout(@GetCurrentUserId() userId: string) {
     return this.authService.logout(userId);
   }
@@ -47,7 +44,6 @@ export class AuthController {
   @UseGuards(RefreshTokenGuard)
   @Post('refresh')
   @ApiBearerAuth()
-  @HttpCode(HttpStatus.OK)
   refresh_token(
     @GetCurrentUserId() userId: string,
     @GetCurrentUser('refreshToken') refreshToken: string
