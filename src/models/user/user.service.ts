@@ -39,6 +39,8 @@ export class UserService {
       delete saved.accessibilities.createdAt;
       return saved;
     } catch (error) {
+      console.log(error);
+      
       throw new UnauthorizedException('E-mail already in use. Try to login');
     }
   }
