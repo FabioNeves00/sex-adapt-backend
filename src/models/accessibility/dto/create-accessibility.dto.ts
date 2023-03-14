@@ -6,7 +6,7 @@ export class CreateAccessibilityDto {
   @IsBoolean()
   bar: boolean;
   @IsBoolean()
-  uneeveness: boolean;
+  unevenness: boolean;
   @IsBoolean()
   incompatible_dimensions: boolean;
   @IsBoolean()
