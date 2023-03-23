@@ -17,6 +17,7 @@ import {
   Matches,
   ValidateNested
 } from 'class-validator';
+import { ApiHideProperty } from '@nestjs/swagger';
 
 export class CreateEstablishmentDto {
   @IsDefined()
@@ -26,6 +27,7 @@ export class CreateEstablishmentDto {
   @Type(() => CreateAccessibilityDto)
   accessibilities: CreateAccessibilityDto;
 
+  @ApiHideProperty()
   favoritedBy: UserEntity[] | null;
 
   @IsNotEmpty({ message: HttpCustomMessages.VALIDATION.NAME.REQUIRED })
