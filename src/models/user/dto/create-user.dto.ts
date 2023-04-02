@@ -12,6 +12,7 @@ import {
 import { Type } from 'class-transformer';
 import { CreateAccessibilityDto } from '@models/accessibility/dto/create-accessibility.dto';
 import { EstablishmentEntity } from '@models/establishment/entities/establishment.entity';
+import { ApiHideProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
   @IsNotEmpty({ message: HttpCustomMessages.VALIDATION.EMAIL.INVALID })
@@ -37,6 +38,8 @@ export class CreateUserDto {
   @Type(() => CreateAccessibilityDto)
   accessibilities: CreateAccessibilityDto;
 
+  @ApiHideProperty()
   hashedRefreshToken: string | null;
+  @ApiHideProperty()
   favorites: null | EstablishmentEntity[];
 }

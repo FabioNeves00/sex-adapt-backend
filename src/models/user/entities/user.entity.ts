@@ -59,7 +59,7 @@ export class UserEntity extends BaseEntity implements IUserEntity {
     { cascade: true }
   )
   @JoinColumn({ name: 'suggestion_id' })
-  suggetions: SuggestEstablishmentEntity[];
+  establishment_suggestions: SuggestEstablishmentEntity[];
 
   @Column({ nullable: true })
   hashedRefreshToken: string;
