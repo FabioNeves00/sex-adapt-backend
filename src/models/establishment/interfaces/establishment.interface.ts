@@ -16,8 +16,8 @@ export interface IEstablishmentEntity extends IBaseEntity {
     cep: string;
   };
   ground_floor_room: boolean;
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
   cover_photo?: string;
   room_photo?: string[];
   landline: string;

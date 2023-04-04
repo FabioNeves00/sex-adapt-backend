@@ -68,11 +68,13 @@ export class CreateEstablishmentDto {
   })
   ground_floor_room: boolean;
 
+  @IsString()
   @IsLatitude()
-  latitude: number;
+  latitude: string;
 
+  @IsString()
   @IsLongitude()
-  longitude: number;
+  longitude: string;
 
   @IsNotEmpty()
   @IsString()

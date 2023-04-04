@@ -33,7 +33,7 @@ export class EstablishmentEntity
   @Column()
   name: string;
 
-  @Column({ type: 'float' })
+  @Column('float')
   price: number;
 
   @Column()
@@ -42,7 +42,7 @@ export class EstablishmentEntity
   @Column({ default: '' })
   website?: string;
 
-  @Column({ type: 'json' })
+  @Column('json')
   address: {
     street: string;
     number: string;
@@ -53,11 +53,11 @@ export class EstablishmentEntity
   @Column()
   ground_floor_room: boolean;
 
-  @Column({ nullable: true })
-  latitude: number;
+  @Column('varchar')
+  latitude: string;
 
-  @Column({ nullable: true })
-  longitude: number;
+  @Column('varchar')
+  longitude: string;
 
   @Column()
   cover_photo: string;
