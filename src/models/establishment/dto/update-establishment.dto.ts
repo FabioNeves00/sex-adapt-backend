@@ -74,12 +74,14 @@ export class UpdateEstablishmentDto {
   ground_floor_room: boolean;
 
   @IsOptional()
+  @IsString()
   @IsLatitude()
-  latitude: number;
+  latitude: string;
 
   @IsOptional()
+  @IsString()
   @IsLongitude()
-  longitude: number;
+  longitude: string;
 
   @IsOptional()
   @IsNotEmpty()
