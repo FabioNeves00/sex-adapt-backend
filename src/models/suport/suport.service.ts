@@ -1,7 +1,7 @@
 import { MailService } from './../../services/mail/mail.service';
 import { CreateSuportDto } from './dto/create-suport.dto';
-import { SuportEntity } from '@models/suport/entities/suport.entity';
-import { UserEntity } from '@user/entities/user.entity';
+import { SuportEntity } from '../../models/suport/entities/suport.entity';
+import { UserEntity } from '../../models/user/entities/user.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { FindOneOptions, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';

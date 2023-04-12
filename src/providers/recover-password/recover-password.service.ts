@@ -7,8 +7,8 @@ import { RecoverPasswordEntity } from './../../models/recover-password/entities/
 import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ConfirmTokenDto } from '@models/recover-password/dto/confirm-token.dto';
-import { ChangePasswordDto } from '@models/recover-password/dto/change-password.dto';
+import { ConfirmTokenDto } from '../../models/recover-password/dto/confirm-token.dto';
+import { ChangePasswordDto } from '../../models/recover-password/dto/change-password.dto';
 import { NotFoundException } from '../../common/exceptions';
 import { RecoverException } from '../../common/exceptions/recover.exception';
 

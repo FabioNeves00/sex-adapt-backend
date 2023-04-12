@@ -1,4 +1,4 @@
-import { IUserEntity } from '@models/user/interfaces';
+import { IUserEntity } from '../../user/interfaces';
 import { IBaseEntity } from './../../base/interfaces/base-entity.interface';
 
 export interface IReviewEntity extends IBaseEntity {

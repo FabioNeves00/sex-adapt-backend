@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { ISuggestEstablishmentEntity } from '../interfaces/suggest-establishment.interface';
 import { BaseEntity } from '../../base/entities/base-entity.entity';
-import { IUserEntity } from '@models/user/interfaces';
+import { IUserEntity } from '../../user/interfaces';
 import { UserEntity } from '../../user/entities/user.entity';
 
 @Entity({ name: 'establishment_suggestions' })

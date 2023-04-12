@@ -1,4 +1,3 @@
-import { HttpCustomMessages } from './../helpers/exceptions/messages/index.messages';
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class FavoriteException extends HttpException {

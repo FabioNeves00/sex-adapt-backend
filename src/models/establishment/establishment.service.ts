@@ -1,4 +1,4 @@
-import { AccessibilityEntity } from '@models/accessibility/entities/accessibility.entity';
+import { AccessibilityEntity } from '../../models/accessibility/entities/accessibility.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
