@@ -1,5 +1,5 @@
-import { CreateAccessibilityDto } from '@models/accessibility/dto/create-accessibility.dto';
-import { EstablishmentEntity } from '@models/establishment/entities/establishment.entity';
+import { CreateAccessibilityDto } from '../../accessibility/dto/create-accessibility.dto';
+import { EstablishmentEntity } from '../../establishment/entities/establishment.entity';
 import { ApiHideProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
