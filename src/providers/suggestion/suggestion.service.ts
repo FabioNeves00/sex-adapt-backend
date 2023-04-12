@@ -1,6 +1,6 @@
-import { EstablishmentService } from '@models/establishment/establishment.service';
+import { EstablishmentService } from '../../models/establishment/establishment.service';
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
-import { UserService } from '@models/user/user.service';
+import { UserService } from '../../models/user/user.service';
 
 @Injectable()
 export class SuggestionService {

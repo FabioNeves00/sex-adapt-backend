@@ -5,7 +5,7 @@ import { UserModule } from './models/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
-import { AccessTokenGuard } from '@guards/access-token.guard';
+import { AccessTokenGuard } from './common/guards/access-token.guard';
 import { ReviewModule } from './models/review/review.module';
 import { SuportModule } from './models/suport/suport.module';
 import { EstablishmentModule } from './models/establishment/establishment.module';
