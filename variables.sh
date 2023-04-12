@@ -1,3 +1,5 @@
+#!/bin/bash
+
 POSTRES_CONTAINER_NAME=postgres-sex-adapt
 POSTGRES_PASSWORD=admin
 POSTGRES_PORT=5432

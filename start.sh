@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "### STARTING SETUP SEX ADAPT ###"
 
 echo "### VARIABLES ###"

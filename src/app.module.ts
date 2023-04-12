@@ -1,29 +1,47 @@
+import { TypeOrmConfigService } from './config/typeorm/typeorm.config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './models/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AccessTokenGuard } from '@guards/access-token.guard';
+import { ReviewModule } from './models/review/review.module';
+import { SuportModule } from './models/suport/suport.module';
+import { EstablishmentModule } from './models/establishment/establishment.module';
+import { SuggestEstablishmentModule } from './models/suggest-establishment/suggest-establishment.module';
+import { FavoriteModule } from './providers/favorite/favorite.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'swagger-static'),
+      serveRoot: '/docs',
+    }),
     ConfigModule.forRoot({
-      envFilePath: ['.env.local'],
       isGlobal: true
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB,
-      entities: ['**/*.entity{.ts,.js}'],
-      synchronize: true,
-      migrations: ['src/migration/*.ts'],
-      migrationsTableName: 'migration'
-    })
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useClass: TypeOrmConfigService
+    }),
+    UserModule,
+    AuthModule,
+    ReviewModule,
+    SuportModule,
+    SuggestEstablishmentModule,
+    EstablishmentModule,
+    FavoriteModule
   ],
-  controllers: [AppController],
-  providers: [AppService]
+  controllers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AccessTokenGuard
+    }
+  ]
 })
 export class AppModule {}
