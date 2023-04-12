@@ -1,4 +1,4 @@
-import { AccessibilityEntity } from '@models/accessibility/entities/accessibility.entity';
+import { AccessibilityEntity } from '../../accessibility/entities/accessibility.entity';
 import {
   Column,
   Entity,

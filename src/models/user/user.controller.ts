@@ -11,7 +11,7 @@ import {
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { GetCurrentUserId } from '../../common/decorators';
-import { SuggestionService } from '@providers/suggestion/suggestion.service';
+import { SuggestionService } from '../../providers/suggestion/suggestion.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('User Routes')

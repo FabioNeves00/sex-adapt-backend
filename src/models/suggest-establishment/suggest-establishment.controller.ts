@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { SuggestEstablishmentService } from './suggest-establishment.service';
 import { CreateSuggestEstablishmentDto } from './dto/create-suggest-establishment.dto';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
-import { GetCurrentUserId } from '@decorators/*';
+import { GetCurrentUserId } from '../../common/decorators';
 
 @ApiTags('Suggestion Routes')
 @ApiBearerAuth()

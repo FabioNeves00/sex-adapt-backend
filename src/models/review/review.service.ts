@@ -1,5 +1,4 @@
-import { UserService } from '@models/user/user.service';
-import { UserEntity } from '@user/entities/user.entity';
+import { UserEntity } from '../../models/user/entities/user.entity';
 import { ReviewEntity } from './entities/review.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';

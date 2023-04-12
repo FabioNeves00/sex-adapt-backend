@@ -1,6 +1,6 @@
-import { UserEntity } from '@user/entities/user.entity';
+import { UserEntity } from '../../user/entities/user.entity';
 import { IReviewEntity } from '../interfaces/review.interface';
-import { BaseEntity } from '@base/entities/base-entity.entity';
+import { BaseEntity } from '../../base/entities/base-entity.entity';
 import { Column, Entity, ManyToOne, OneToOne } from 'typeorm';
 import { EstablishmentEntity } from '../../establishment/entities/establishment.entity';
 @Entity({ name: 'review' })

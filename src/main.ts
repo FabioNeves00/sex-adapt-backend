@@ -1,4 +1,4 @@
-import { AccessTokenGuard } from '@guards/access-token.guard';
+import { AccessTokenGuard } from './common/guards/access-token.guard';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';

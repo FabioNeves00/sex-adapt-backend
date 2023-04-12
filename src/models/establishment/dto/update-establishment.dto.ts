@@ -1,4 +1,4 @@
-import { CreateAccessibilityDto } from '@models/accessibility/dto/create-accessibility.dto';
+import { CreateAccessibilityDto } from '../../accessibility/dto/create-accessibility.dto';
 import { Type } from 'class-transformer';
 import {
   IsDefined,
