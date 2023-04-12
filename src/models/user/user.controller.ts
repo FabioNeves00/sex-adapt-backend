@@ -7,14 +7,10 @@ import {
   Patch,
   Param,
   Delete,
-  ParseUUIDPipe,
-  forwardRef,
-  Inject
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { GetCurrentUserId, Public } from 'src/common/decorators';
+import { GetCurrentUserId } from '../../common/decorators';
 import { SuggestionService } from '@providers/suggestion/suggestion.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 

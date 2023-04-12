@@ -5,17 +5,14 @@ import { AuthService } from './auth.service';
 import {
   Body,
   Controller,
-  HttpCode,
-  HttpStatus,
   Post,
   UseGuards
 } from '@nestjs/common';
-import { Tokens } from './@types/tokens.type';
 import {
   Public,
   GetCurrentUserId,
   GetCurrentUser
-} from 'src/common/decorators';
+} from '../common/decorators';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth Routes')

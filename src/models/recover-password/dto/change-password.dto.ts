@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
-import { HttpCustomMessages } from 'src/common/helpers/exceptions/messages/index.messages';
+import { HttpCustomMessages } from '../../../common/helpers/exceptions/messages/index.messages';
 
 export class ChangePasswordDto {
   @IsNotEmpty({ message: HttpCustomMessages.VALIDATION.EMAIL.INVALID })

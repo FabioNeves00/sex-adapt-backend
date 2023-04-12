@@ -11,9 +11,15 @@ import { SuportModule } from './models/suport/suport.module';
 import { EstablishmentModule } from './models/establishment/establishment.module';
 import { SuggestEstablishmentModule } from './models/suggest-establishment/suggest-establishment.module';
 import { FavoriteModule } from './providers/favorite/favorite.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'swagger-static'),
+      serveRoot: '/docs',
+    }),
     ConfigModule.forRoot({
       isGlobal: true
     }),

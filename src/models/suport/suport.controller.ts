@@ -10,7 +10,7 @@ import {
   HttpCode,
   HttpStatus
 } from '@nestjs/common';
-import { GetCurrentUserId } from 'src/common/decorators';
+import { GetCurrentUserId } from '../../common/decorators';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Support Routes')

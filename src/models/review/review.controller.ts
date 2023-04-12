@@ -11,8 +11,7 @@ import {
 } from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
-import { GetCurrentUserId } from 'src/common/decorators';
-import { RefreshTokenGuard } from '@guards/refresh-token.guard';
+import { GetCurrentUserId } from '../../common/decorators';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Review Routes')

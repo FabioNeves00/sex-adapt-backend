@@ -1,4 +1,4 @@
-import { HttpCustomMessages } from 'src/common/helpers/exceptions/messages/index.messages';
+import { HttpCustomMessages } from '../../../common/helpers/exceptions/messages/index.messages';
 import {
   IsNotEmpty,
   IsNumber,
