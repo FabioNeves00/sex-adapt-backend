@@ -1,4 +1,4 @@
-import { UserModule } from '@models/user/user.module';
+import { UserModule } from '../../models/user/user.module';
 import { forwardRef, Module } from '@nestjs/common';
 import { EstablishmentModule } from '../../models/establishment/establishment.module';
 import { SuggestionService } from './suggestion.service';
