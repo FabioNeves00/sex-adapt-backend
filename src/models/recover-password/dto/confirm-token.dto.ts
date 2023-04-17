@@ -6,7 +6,7 @@ import {
   Max,
   Min
 } from 'class-validator';
-import { HttpCustomMessages } from 'src/common/helpers/exceptions/messages/index.messages';
+import { HttpCustomMessages } from '../../../common/helpers/exceptions/messages/index.messages';
 
 export class ConfirmTokenDto {
   @IsNotEmpty({ message: HttpCustomMessages.VALIDATION.EMAIL.INVALID })

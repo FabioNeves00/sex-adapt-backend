@@ -7,9 +7,8 @@ import { UnauthorizedException, Injectable } from '@nestjs/common';
 import { AuthDto } from './dto/auth.dto';
 import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
-import { UserService } from '@models/user/user.service';
+import { UserService } from '../models/user/user.service';
 import { Tokens } from './@types/tokens.type';
-import { hash, verify } from 'argon2';
 
 @Injectable()
 export class AuthService {

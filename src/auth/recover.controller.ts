@@ -1,7 +1,7 @@
-import { Public } from '@decorators/*';
-import { CreateRecoverPasswordDto } from '@models/recover-password';
-import { ChangePasswordDto } from '@models/recover-password/dto/change-password.dto';
-import { ConfirmTokenDto } from '@models/recover-password/dto/confirm-token.dto';
+import { Public } from '../common/decorators';
+import { CreateRecoverPasswordDto } from '../models/recover-password';
+import { ChangePasswordDto } from '../models/recover-password/dto/change-password.dto';
+import { ConfirmTokenDto } from '../models/recover-password/dto/confirm-token.dto';
 import {
   Body,
   Controller,
@@ -11,7 +11,7 @@ import {
   Put
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { RecoverPasswordService } from '@providers/recover-password/recover-password.service';
+import { RecoverPasswordService } from '../providers/recover-password/recover-password.service';
 
 @ApiTags('Recover Routes')
 @Public()

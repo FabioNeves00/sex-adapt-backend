@@ -1,6 +1,6 @@
-import { BaseEntity } from '@models/base/entities/base-entity.entity';
-import { EstablishmentEntity } from '@models/establishment/entities/establishment.entity';
-import { UserEntity } from '@models/user/entities/user.entity';
+import { BaseEntity } from '../../base/entities/base-entity.entity';
+import { EstablishmentEntity } from '../../establishment/entities/establishment.entity';
+import { UserEntity } from '../../user/entities/user.entity';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { IAccessibilityEntity } from '../interfaces/accessibility.interface';
 

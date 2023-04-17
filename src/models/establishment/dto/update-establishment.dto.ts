@@ -1,7 +1,4 @@
-import { CreateAccessibilityDto } from '@models/accessibility/dto/create-accessibility.dto';
-import { UserEntity } from '@models/user/entities/user.entity';
-import { PartialType } from '@nestjs/mapped-types';
-import { ApiHideProperty } from '@nestjs/swagger';
+import { CreateAccessibilityDto } from '../../accessibility/dto/create-accessibility.dto';
 import { Type } from 'class-transformer';
 import {
   IsDefined,
@@ -18,8 +15,7 @@ import {
   IsArray,
   Matches
 } from 'class-validator';
-import { HttpCustomMessages } from 'src/common/helpers/exceptions/messages/index.messages';
-import { CreateEstablishmentDto } from './create-establishment.dto';
+import { HttpCustomMessages } from '../../../common/helpers/exceptions/messages/index.messages';
 
 export class UpdateEstablishmentDto {
   @IsOptional()

@@ -1,4 +1,4 @@
-import { UserEntity } from '@user/entities/user.entity';
+import { UserEntity } from '../../models/user/entities/user.entity';
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { BaseEmail } from './@types/base-email.type';

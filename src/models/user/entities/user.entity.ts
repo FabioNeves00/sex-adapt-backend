@@ -12,7 +12,7 @@ import {
 import { ReviewEntity } from './../../review/entities/review.entity';
 import { BaseEntity } from './../../base/entities/base-entity.entity';
 import { IUserEntity } from './../interfaces/user.interface';
-import { SuportEntity } from '@models/suport/entities/suport.entity';
+import { SuportEntity } from '../../suport/entities/suport.entity';
 import { EstablishmentEntity } from '../../establishment/entities/establishment.entity';
 import { SuggestEstablishmentEntity } from '../../suggest-establishment/entities/suggest-establishment.entity';
 

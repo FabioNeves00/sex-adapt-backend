@@ -1,4 +1,4 @@
-import { HttpCustomMessages } from 'src/common/helpers/exceptions/messages/index.messages';
+import { HttpCustomMessages } from '../helpers/exceptions/messages/index.messages';
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 export class TokenInvalidException extends HttpException {

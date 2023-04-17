@@ -1,16 +1,16 @@
 import { MailService } from './../../services/mail/mail.service';
 import { TokenInvalidException } from './../../common/exceptions/token-invalid.exception';
-import { HttpCustomMessages } from 'src/common/helpers/exceptions/messages/index.messages';
+import { HttpCustomMessages } from '../../common/helpers/exceptions/messages/index.messages';
 import { CreateRecoverPasswordDto } from './../../models/recover-password/dto/create-recover-password.dto';
 import { UserService } from './../../models/user/user.service';
 import { RecoverPasswordEntity } from './../../models/recover-password/entities/recover-password.entity';
 import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ConfirmTokenDto } from '@models/recover-password/dto/confirm-token.dto';
-import { ChangePasswordDto } from '@models/recover-password/dto/change-password.dto';
-import { NotFoundException } from 'src/common/exceptions';
-import { RecoverException } from 'src/common/exceptions/recover.exception';
+import { ConfirmTokenDto } from '../../models/recover-password/dto/confirm-token.dto';
+import { ChangePasswordDto } from '../../models/recover-password/dto/change-password.dto';
+import { NotFoundException } from '../../common/exceptions';
+import { RecoverException } from '../../common/exceptions/recover.exception';
 
 @Injectable()
 export class RecoverPasswordService {

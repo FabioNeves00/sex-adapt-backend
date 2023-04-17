@@ -1,4 +1,4 @@
-import { UserEntity } from '@models/user/entities/user.entity';
+import { UserEntity } from '../../user/entities/user.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { ISuportEntity } from '../interfaces/suport.interface';
 import { BaseEntity } from './../../base/entities/base-entity.entity';
