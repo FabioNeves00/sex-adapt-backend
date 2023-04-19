@@ -5,17 +5,20 @@ import {
   Body,
   Patch,
   Param,
-  Delete
+  Delete,
+  UseGuards
 } from '@nestjs/common';
 import { EstablishmentService } from './establishment.service';
 import { CreateEstablishmentDto } from './dto/create-establishment.dto';
 import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { Public } from '../../common/decorators';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 
 @ApiTags('Establishment Routes')
 @ApiBearerAuth()
 @Public()
+@UseGuards(new ApiKeyGuard('CLIENT'))
 @Controller('establishment')
 export class EstablishmentController {
   constructor(private readonly establishmentService: EstablishmentService) {}

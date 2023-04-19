@@ -14,9 +14,11 @@ import {
   GetCurrentUser
 } from '../common/decorators';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiKeyGuard } from '../common/guards/auth-key.guard';
 
 @ApiTags('Auth Routes')
 @Controller('auth')
+@UseGuards(new ApiKeyGuard('CLIENT'))
 export class AuthController {
   constructor(private authService: AuthService) {}
 

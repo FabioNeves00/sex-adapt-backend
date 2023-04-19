@@ -13,10 +13,12 @@ import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { GetCurrentUserId } from '../../common/decorators';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 
 @ApiTags('Review Routes')
 @ApiBearerAuth()
 @Controller('review')
+@UseGuards(new ApiKeyGuard('CLIENT'))
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 

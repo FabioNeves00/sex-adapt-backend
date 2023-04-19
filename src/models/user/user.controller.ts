@@ -7,16 +7,19 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { GetCurrentUserId } from '../../common/decorators';
 import { SuggestionService } from '../../providers/suggestion/suggestion.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 
 @ApiTags('User Routes')
 @ApiBearerAuth()
 @Controller('user')
+@UseGuards(new ApiKeyGuard('CLIENT'))
 export class UserController {
   constructor(
     private readonly userService: UserService,

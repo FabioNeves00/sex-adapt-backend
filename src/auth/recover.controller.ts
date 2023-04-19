@@ -8,14 +8,17 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  Put
+  Put,
+  UseGuards
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { RecoverPasswordService } from '../providers/recover-password/recover-password.service';
+import { ApiKeyGuard } from '../common/guards/auth-key.guard';
 
 @ApiTags('Recover Routes')
 @Public()
 @Controller('auth/recover')
+@UseGuards(new ApiKeyGuard('CLIENT'))
 export class RecoverController {
   constructor(private recoverService: RecoverPasswordService) {}
 
