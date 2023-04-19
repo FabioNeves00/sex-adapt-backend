@@ -65,5 +65,7 @@ async function bootstrap() {
   await app.listen(configService.get('PORT'), () => {
     console.log(`Listening on localhost:${configService.get('PORT')}`);
   });
+  return app;
 }
-bootstrap();
+
+export const app = bootstrap();
