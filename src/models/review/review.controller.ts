@@ -12,7 +12,7 @@ import {
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { GetCurrentUserId } from '../../common/decorators';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 
 @ApiTags('Review Routes')
@@ -22,6 +22,7 @@ import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
+  @ApiHeader({ required: true, name: 'api' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
@@ -31,16 +32,19 @@ export class ReviewController {
     return await this.reviewService.create(userId, createReviewDto);
   }
 
+  @ApiHeader({ required: true, name: 'api' })
   @Get()
   findAll() {
     return this.reviewService.findAll();
   }
 
+  @ApiHeader({ required: true, name: 'api' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.reviewService.findOneOrFail({ where: { id } });
   }
 
+  @ApiHeader({ required: true, name: 'api' })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.reviewService.remove(id);

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { SuggestEstablishmentService } from './suggest-establishment.service';
 import { CreateSuggestEstablishmentDto } from './dto/create-suggest-establishment.dto';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiHeader } from '@nestjs/swagger';
 import { GetCurrentUserId } from '../../common/decorators';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 
@@ -14,6 +14,7 @@ export class SuggestEstablishmentController {
     private readonly suggestEstablishmentService: SuggestEstablishmentService
   ) {}
 
+  @ApiHeader({ required: true, name: 'api' })
   @Post()
   create(
     @Body() createSuggestEstablishmentDto: CreateSuggestEstablishmentDto,
@@ -25,11 +26,13 @@ export class SuggestEstablishmentController {
     );
   }
 
+  @ApiHeader({ required: true, name: 'api' })
   @Get()
   findAll() {
     return this.suggestEstablishmentService.findAll();
   }
 
+  @ApiHeader({ required: true, name: 'api' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.suggestEstablishmentService.findOne(id);

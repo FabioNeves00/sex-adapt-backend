@@ -12,7 +12,7 @@ import {
   UseGuards
 } from '@nestjs/common';
 import { GetCurrentUserId } from '../../common/decorators';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 
 @ApiTags('Support Routes')
@@ -22,6 +22,7 @@ import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 export class SuportController {
   constructor(private readonly suportService: SuportService) {}
 
+  @ApiHeader({ required: true, name: 'api' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
@@ -31,11 +32,13 @@ export class SuportController {
     return await this.suportService.create(userId, createSuportDto);
   }
 
+  @ApiHeader({ required: true, name: 'api' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.suportService.findOneOrFail({ where: { id } });
   }
 
+  @ApiHeader({ required: true, name: 'api' })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.suportService.remove(id);
