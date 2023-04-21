@@ -16,9 +16,9 @@ services:
             POSTGRES_USER: ${DB_USERNAME}
             POSTGRES_PASSWORD: ${DB_PASSWORD}
             POSTGRES_DB: ${DB}
-            PORT: 3000
+            PORT: ${PORT}
         ports:
-            - "8080:3000"
+            - "${PORT}:3500"
         env_file:
             - .env
         networks:
