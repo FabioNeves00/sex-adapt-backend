@@ -8,17 +8,21 @@ import {
   Param,
   Delete,
   HttpCode,
-  HttpStatus
+  HttpStatus,
+  UseGuards
 } from '@nestjs/common';
 import { GetCurrentUserId } from '../../common/decorators';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
+import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 
 @ApiTags('Support Routes')
 @ApiBearerAuth()
 @Controller('suport')
+@UseGuards(new ApiKeyGuard('CLIENT'))
 export class SuportController {
   constructor(private readonly suportService: SuportService) {}
 
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
@@ -28,11 +32,13 @@ export class SuportController {
     return await this.suportService.create(userId, createSuportDto);
   }
 
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.suportService.findOneOrFail({ where: { id } });
   }
 
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.suportService.remove(id);

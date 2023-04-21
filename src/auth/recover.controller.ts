@@ -8,27 +8,33 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  Put
+  Put,
+  UseGuards
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiTags } from '@nestjs/swagger';
 import { RecoverPasswordService } from '../providers/recover-password/recover-password.service';
+import { ApiKeyGuard } from '../common/guards/auth-key.guard';
 
 @ApiTags('Recover Routes')
 @Public()
 @Controller('auth/recover')
+@UseGuards(new ApiKeyGuard('CLIENT'))
 export class RecoverController {
   constructor(private recoverService: RecoverPasswordService) {}
 
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post()
   async recoverPassword(@Body() recoverPasswordDto: CreateRecoverPasswordDto) {
     return await this.recoverService.create(recoverPasswordDto);
   }
 
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post('confirm')
   async confirmToken(@Body() confirmTokenDto: ConfirmTokenDto) {
     return await this.recoverService.confirmToken(confirmTokenDto);
   }
 
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Put('changePassword')
   async changePassword(@Body() changePasswordDto: ChangePasswordDto) {
     return await this.recoverService.changePassword(changePasswordDto);
