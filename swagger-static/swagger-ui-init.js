@@ -22,6 +22,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "requestBody": {
@@ -67,6 +75,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -87,7 +103,16 @@ window.onload = function() {
       "/user/suggestion": {
         "get": {
           "operationId": "UserController_generateSuggestions",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "200": {
               "description": ""
@@ -106,7 +131,16 @@ window.onload = function() {
       "/user/favorites": {
         "get": {
           "operationId": "UserController_getFavorites",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "200": {
               "description": "",
@@ -143,6 +177,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -176,6 +218,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -203,7 +253,16 @@ window.onload = function() {
       "/establishment": {
         "post": {
           "operationId": "EstablishmentController_create",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -237,7 +296,16 @@ window.onload = function() {
         },
         "get": {
           "operationId": "EstablishmentController_findAll",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "200": {
               "description": ""
@@ -264,6 +332,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -287,6 +363,14 @@ window.onload = function() {
               "name": "id",
               "required": true,
               "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
               "schema": {
                 "type": "string"
               }
@@ -333,6 +417,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -353,7 +445,16 @@ window.onload = function() {
       "/auth/local/signup": {
         "post": {
           "operationId": "AuthController_signup_local",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -377,7 +478,16 @@ window.onload = function() {
       "/auth/local/signin": {
         "post": {
           "operationId": "AuthController_signin_local",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -401,7 +511,16 @@ window.onload = function() {
       "/auth/logout": {
         "post": {
           "operationId": "AuthController_logout",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "201": {
               "description": ""
@@ -420,7 +539,16 @@ window.onload = function() {
       "/auth/refresh": {
         "post": {
           "operationId": "AuthController_refresh_token",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "201": {
               "description": "",
@@ -446,7 +574,16 @@ window.onload = function() {
       "/auth/recover": {
         "post": {
           "operationId": "RecoverController_recoverPassword",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -477,7 +614,16 @@ window.onload = function() {
       "/auth/recover/confirm": {
         "post": {
           "operationId": "RecoverController_confirmToken",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -508,7 +654,16 @@ window.onload = function() {
       "/auth/recover/changePassword": {
         "put": {
           "operationId": "RecoverController_changePassword",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -539,7 +694,16 @@ window.onload = function() {
       "/review": {
         "post": {
           "operationId": "ReviewController_create",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -573,7 +737,16 @@ window.onload = function() {
         },
         "get": {
           "operationId": "ReviewController_findAll",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "200": {
               "description": "",
@@ -610,6 +783,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -643,6 +824,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -663,7 +852,16 @@ window.onload = function() {
       "/suport": {
         "post": {
           "operationId": "SuportController_create",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -707,6 +905,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -740,6 +946,14 @@ window.onload = function() {
               "schema": {
                 "type": "string"
               }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
             }
           ],
           "responses": {
@@ -760,7 +974,16 @@ window.onload = function() {
       "/suggest": {
         "post": {
           "operationId": "SuggestEstablishmentController_create",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "requestBody": {
             "required": true,
             "content": {
@@ -794,7 +1017,16 @@ window.onload = function() {
         },
         "get": {
           "operationId": "SuggestEstablishmentController_findAll",
-          "parameters": [],
+          "parameters": [
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "200": {
               "description": "",
@@ -828,6 +1060,14 @@ window.onload = function() {
               "name": "id",
               "required": true,
               "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api",
+              "in": "header",
+              "required": true,
               "schema": {
                 "type": "string"
               }
