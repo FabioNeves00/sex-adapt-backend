@@ -14,11 +14,11 @@ export class ApiKeyGuard implements CanActivate {
     switch (this.keyType) {
       case 'CLIENT':
         return (
-          isApiKeyValid(request.headers.api, 'DEV') ||
-          isApiKeyValid(request.headers.api, 'CLIENT')
+          isApiKeyValid(request.headers.x_api_key, 'DEV') ||
+          isApiKeyValid(request.headers.x_api_key, 'CLIENT')
         );
       case 'DEV':
-        return isApiKeyValid(request.headers.api, 'DEV');
+        return isApiKeyValid(request.headers.x_api_key, 'DEV');
     }
   }
 }

@@ -23,25 +23,25 @@ import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 export class EstablishmentController {
   constructor(private readonly establishmentService: EstablishmentService) {}
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post()
   async create(@Body() createEstablishmentDto: CreateEstablishmentDto) {
     return await this.establishmentService.create(createEstablishmentDto);
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Get()
   findAll() {
     return this.establishmentService.findAll();
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.establishmentService.findOneOrFail({ where: { id } });
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -50,7 +50,7 @@ export class EstablishmentController {
     return this.establishmentService.update(id, updateEstablishmentDto);
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.establishmentService.remove(id);

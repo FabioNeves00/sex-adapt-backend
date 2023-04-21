@@ -22,19 +22,19 @@ import { ApiKeyGuard } from '../common/guards/auth-key.guard';
 export class RecoverController {
   constructor(private recoverService: RecoverPasswordService) {}
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post()
   async recoverPassword(@Body() recoverPasswordDto: CreateRecoverPasswordDto) {
     return await this.recoverService.create(recoverPasswordDto);
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post('confirm')
   async confirmToken(@Body() confirmTokenDto: ConfirmTokenDto) {
     return await this.recoverService.confirmToken(confirmTokenDto);
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Put('changePassword')
   async changePassword(@Body() changePasswordDto: ChangePasswordDto) {
     return await this.recoverService.changePassword(changePasswordDto);

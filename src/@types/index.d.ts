@@ -1,5 +1,5 @@
 export type CustomRequest = Request & {
   headers: IncomingHttpHeaders & {
-    api: string;
+    x_api_key: string;
   };
 }

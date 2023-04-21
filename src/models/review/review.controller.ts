@@ -22,7 +22,7 @@ import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
@@ -32,19 +32,19 @@ export class ReviewController {
     return await this.reviewService.create(userId, createReviewDto);
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Get()
   findAll() {
     return this.reviewService.findAll();
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.reviewService.findOneOrFail({ where: { id } });
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.reviewService.remove(id);

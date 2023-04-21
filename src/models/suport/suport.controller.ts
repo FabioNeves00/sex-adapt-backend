@@ -22,7 +22,7 @@ import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 export class SuportController {
   constructor(private readonly suportService: SuportService) {}
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
@@ -32,13 +32,13 @@ export class SuportController {
     return await this.suportService.create(userId, createSuportDto);
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.suportService.findOneOrFail({ where: { id } });
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.suportService.remove(id);

@@ -14,7 +14,7 @@ export class SuggestEstablishmentController {
     private readonly suggestEstablishmentService: SuggestEstablishmentService
   ) {}
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Post()
   create(
     @Body() createSuggestEstablishmentDto: CreateSuggestEstablishmentDto,
@@ -26,13 +26,13 @@ export class SuggestEstablishmentController {
     );
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Get()
   findAll() {
     return this.suggestEstablishmentService.findAll();
   }
 
-  @ApiHeader({ required: true, name: 'api' })
+  @ApiHeader({ required: true, name: 'x_api_key' })
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.suggestEstablishmentService.findOne(id);

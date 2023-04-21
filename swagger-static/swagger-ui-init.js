@@ -24,7 +24,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -77,7 +77,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -105,7 +105,7 @@ window.onload = function() {
           "operationId": "UserController_generateSuggestions",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -133,7 +133,7 @@ window.onload = function() {
           "operationId": "UserController_getFavorites",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -179,7 +179,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -220,7 +220,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -255,7 +255,7 @@ window.onload = function() {
           "operationId": "EstablishmentController_create",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -298,7 +298,7 @@ window.onload = function() {
           "operationId": "EstablishmentController_findAll",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -334,7 +334,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -368,7 +368,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -419,7 +419,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -447,7 +447,7 @@ window.onload = function() {
           "operationId": "AuthController_signup_local",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -480,7 +480,7 @@ window.onload = function() {
           "operationId": "AuthController_signin_local",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -513,7 +513,7 @@ window.onload = function() {
           "operationId": "AuthController_logout",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -541,7 +541,7 @@ window.onload = function() {
           "operationId": "AuthController_refresh_token",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -576,7 +576,7 @@ window.onload = function() {
           "operationId": "RecoverController_recoverPassword",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -616,7 +616,7 @@ window.onload = function() {
           "operationId": "RecoverController_confirmToken",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -656,7 +656,7 @@ window.onload = function() {
           "operationId": "RecoverController_changePassword",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -696,7 +696,7 @@ window.onload = function() {
           "operationId": "ReviewController_create",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -739,7 +739,7 @@ window.onload = function() {
           "operationId": "ReviewController_findAll",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -785,7 +785,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -826,7 +826,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -854,7 +854,7 @@ window.onload = function() {
           "operationId": "SuportController_create",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -907,7 +907,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -948,7 +948,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -976,7 +976,7 @@ window.onload = function() {
           "operationId": "SuggestEstablishmentController_create",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -1019,7 +1019,7 @@ window.onload = function() {
           "operationId": "SuggestEstablishmentController_findAll",
           "parameters": [
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
@@ -1065,7 +1065,7 @@ window.onload = function() {
               }
             },
             {
-              "name": "api",
+              "name": "x_api_key",
               "in": "header",
               "required": true,
               "schema": {
