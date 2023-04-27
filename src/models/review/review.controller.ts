@@ -7,7 +7,8 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  UseGuards
+  UseGuards,
+  Query
 } from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { CreateReviewDto } from './dto/create-review.dto';
@@ -34,19 +35,19 @@ export class ReviewController {
 
   @ApiHeader({ required: true, name: 'x_api_key' })
   @Get()
-  findAll() {
-    return this.reviewService.findAll();
+  async findAll(@Query('establishment') establishmentId: string) {
+    return this.reviewService.findAll(establishmentId);
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.reviewService.findOneOrFail({ where: { id } });
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.reviewService.remove(id);
   }
 }
