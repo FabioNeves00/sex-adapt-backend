@@ -87,7 +87,7 @@ export class UpdateEstablishmentDto {
   @IsOptional()
   @IsNotEmpty()
   @IsArray()
-  room_photo: string[];
+  room_photos: string[];
 
   @IsOptional()
   @Matches(

@@ -8,7 +8,6 @@ export interface ISuggestEstablishmentEntity extends IBaseEntity {
   address: string;
   landline: string;
   price: string;
-  isInPlace: boolean;
   website: string;
   elevator: boolean;
   bar: boolean;

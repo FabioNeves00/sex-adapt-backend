@@ -30,9 +30,6 @@ export class CreateSuggestEstablishmentDto {
   @IsBoolean()
   ground_floor_room: boolean;
 
-  @IsBoolean()
-  isInPlace: boolean;
-
   @IsString()
   @IsNotEmpty()
   @IsOptional()

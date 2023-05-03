@@ -1,3 +1,4 @@
+import { EstablishmentEntity } from './../establishment/entities/establishment.entity';
 import { UserEntity } from '../../models/user/entities/user.entity';
 import { ReviewEntity } from './entities/review.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
@@ -16,7 +17,9 @@ export class ReviewService {
     try {
       const review = this.reviewsRepository.create({
         user: userId as unknown as UserEntity, // O proprio typeorm converte o id para a entidade de usuario por causa da configuração da relação la na entidade
-        ...createReviewDto
+        establishment: createReviewDto.establishmentId as unknown as EstablishmentEntity,
+        comment: createReviewDto.comment,
+        grade: createReviewDto.grade,
       });
       await this.reviewsRepository.save(review);
       return review;
@@ -25,15 +28,19 @@ export class ReviewService {
     }
   }
 
-  async findAll() {
+  async findAll(establishmentId: string) {
     return await this.reviewsRepository.find({
+      where: {
+        establishment: {
+          id: establishmentId
+        }
+      },
       relations: {
-        user: true
+        user: true,
       },
       select: {
         user: {
           id: true,
-          email: true,
           name: true
         }
       }
