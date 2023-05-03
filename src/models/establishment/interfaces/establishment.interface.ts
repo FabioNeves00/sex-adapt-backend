@@ -19,7 +19,7 @@ export interface IEstablishmentEntity extends IBaseEntity {
   latitude: string;
   longitude: string;
   cover_photo?: string;
-  room_photo?: string[];
+  room_photos?: string[];
   landline: string;
   whatsapp?: string;
 }

@@ -1608,7 +1608,7 @@ window.onload = function() {
             "cover_photo": {
               "type": "string"
             },
-            "room_photo": {
+            "room_photos": {
               "type": "array",
               "items": {
                 "type": "string"
@@ -1632,7 +1632,7 @@ window.onload = function() {
             "latitude",
             "longitude",
             "cover_photo",
-            "room_photo",
+            "room_photos",
             "landline",
             "whatsapp"
           ]
@@ -1688,7 +1688,7 @@ window.onload = function() {
             "cover_photo": {
               "type": "string"
             },
-            "room_photo": {
+            "room_photos": {
               "type": "array",
               "items": {
                 "type": "string"
@@ -1712,7 +1712,7 @@ window.onload = function() {
             "latitude",
             "longitude",
             "cover_photo",
-            "room_photo",
+            "room_photos",
             "landline",
             "whatsapp"
           ]

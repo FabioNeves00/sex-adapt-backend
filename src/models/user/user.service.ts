@@ -89,6 +89,8 @@ export class UserService {
       },
       relations: ['reviews', 'accessibilities', 'suports', 'favorites']
     });
+    if(!user) throw new NotFoundException('Usuário não encontrado')
+    
     delete user.createdAt;
     delete user.updatedAt;
     delete user.hashedRefreshToken;

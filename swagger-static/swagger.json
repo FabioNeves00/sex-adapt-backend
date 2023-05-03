@@ -1358,7 +1358,7 @@
           "cover_photo": {
             "type": "string"
           },
-          "room_photo": {
+          "room_photos": {
             "type": "array",
             "items": {
               "type": "string"
@@ -1382,7 +1382,7 @@
           "latitude",
           "longitude",
           "cover_photo",
-          "room_photo",
+          "room_photos",
           "landline",
           "whatsapp"
         ]
@@ -1438,7 +1438,7 @@
           "cover_photo": {
             "type": "string"
           },
-          "room_photo": {
+          "room_photos": {
             "type": "array",
             "items": {
               "type": "string"
@@ -1462,7 +1462,7 @@
           "latitude",
           "longitude",
           "cover_photo",
-          "room_photo",
+          "room_photos",
           "landline",
           "whatsapp"
         ]
