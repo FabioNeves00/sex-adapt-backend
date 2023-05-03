@@ -31,9 +31,6 @@ export class SuggestEstablishmentEntity
   website: string;
 
   @Column()
-  isInPlace: boolean;
-
-  @Column()
   ground_floor_room: boolean;
 
   @Column()
