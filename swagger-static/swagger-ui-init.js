@@ -739,6 +739,14 @@ window.onload = function() {
           "operationId": "ReviewController_findAll",
           "parameters": [
             {
+              "name": "establishment",
+              "required": true,
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
               "name": "x_api_key",
               "in": "header",
               "required": true,
@@ -1360,9 +1368,6 @@ window.onload = function() {
             "website": {
               "type": "string"
             },
-            "isInPlace": {
-              "type": "boolean"
-            },
             "ground_floor_room": {
               "type": "boolean"
             },
@@ -1407,7 +1412,6 @@ window.onload = function() {
             "landline",
             "price",
             "website",
-            "isInPlace",
             "ground_floor_room",
             "elevator",
             "bar",
@@ -1859,9 +1863,6 @@ window.onload = function() {
             "ground_floor_room": {
               "type": "boolean"
             },
-            "isInPlace": {
-              "type": "boolean"
-            },
             "website": {
               "type": "string"
             },
@@ -1894,7 +1895,6 @@ window.onload = function() {
             "landline",
             "price",
             "ground_floor_room",
-            "isInPlace",
             "website",
             "elevator",
             "bar",
