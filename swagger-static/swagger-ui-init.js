@@ -741,7 +741,7 @@ window.onload = function() {
             {
               "name": "establishment",
               "required": true,
-              "in": "query",
+              "in": "path",
               "schema": {
                 "type": "string"
               }
