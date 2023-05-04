@@ -35,7 +35,7 @@ export class ReviewController {
 
   @ApiHeader({ required: true, name: 'x_api_key' })
   @Get()
-  async findAll(@Query('establishment') establishmentId: string) {
+  async findAll(@Param('establishment') establishmentId: string) {
     return this.reviewService.findAll(establishmentId);
   }
 
