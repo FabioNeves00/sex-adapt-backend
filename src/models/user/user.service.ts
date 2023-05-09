@@ -97,6 +97,10 @@ export class UserService {
     delete user.accessibilities.id;
     delete user.accessibilities.updatedAt;
     delete user.accessibilities.createdAt;
+    delete user.establishment_suggestions;
+    delete user.favorites;
+    delete user.reviews;
+    delete user.suports;
     return user;
   }
 
@@ -125,6 +129,10 @@ export class UserService {
     delete saved.accessibilities.id;
     delete saved.accessibilities.updatedAt;
     delete saved.accessibilities.createdAt;
+    delete saved.establishment_suggestions;
+    delete saved.favorites;
+    delete saved.reviews;
+    delete saved.suports;
     return saved;
   }
 
