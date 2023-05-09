@@ -1,7 +1,7 @@
 #!/bin/bash
 
 POSTRES_CONTAINER_NAME=postgres-sex-adapt
-POSTGRES_PASSWORD=admin
+POSTGRES_PASSWORD=postgres
 POSTGRES_PORT=5432
 
 DOCKER_NET_NAME=sex-adapt-bridge
