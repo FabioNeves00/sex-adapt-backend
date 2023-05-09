@@ -32,7 +32,7 @@ export class AuthService {
   async signin_local(authInfo: AuthDto) {
     const user = await this.userService.findOneByEmail(authInfo.email);
 
-    if (!user) throw new LoginFailedException();
+    if (!user || !authInfo) throw new LoginFailedException();
     const password_match = await argon2.verify(
       user.password,
       authInfo.password
