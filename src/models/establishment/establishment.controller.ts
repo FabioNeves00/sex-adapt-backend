@@ -11,7 +11,7 @@ import {
 import { EstablishmentService } from './establishment.service';
 import { CreateEstablishmentDto } from './dto/create-establishment.dto';
 import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
-import { Public } from '../../common/decorators';
+import { GetCurrentUserId, Public } from '../../common/decorators';
 import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 
@@ -31,8 +31,10 @@ export class EstablishmentController {
 
   @ApiHeader({ required: true, name: 'x_api_key' })
   @Get()
-  findAll() {
-    return this.establishmentService.findAll();
+  findAll(
+    @GetCurrentUserId() userId: string
+  ) {
+    return this.establishmentService.findAll(userId);
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
