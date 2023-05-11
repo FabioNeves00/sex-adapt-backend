@@ -1,3 +1,4 @@
+import { isEstablishmentFavoritedByUser } from './../../utils/isEstablishmentFavoritedByUser.util';
 import { AccessibilityEntity } from '../../models/accessibility/entities/accessibility.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -37,11 +38,11 @@ export class EstablishmentService {
     return saved;
   }
 
-  async findAll() {
+  async findAll(userId: string) {
     const establishments = await this.establishmentRepository.find({
-      relations: ['accessibilities', 'reviews']
+      relations: ['accessibilities', 'reviews', 'favoritedBy']
     });
-    const establishmentsWithRating = establishments.map((establishment) => {
+    const establishmentsWithFlags = establishments.map((establishment) => {
       delete establishment.createdAt;
       delete establishment.updatedAt;
       delete establishment.accessibilities.createdAt;
@@ -50,11 +51,12 @@ export class EstablishmentService {
       delete establishment.accessibilities.id;
       return {
         ...establishment,
-        rating: getEstablishmentRating(establishment)
+        rating: getEstablishmentRating(establishment),
+        isFavoritedByUser: isEstablishmentFavoritedByUser(establishment, userId)
       };
     });
-
-    return establishmentsWithRating;
+    establishmentsWithFlags.forEach(establishment => delete establishment.favoritedBy)
+    return establishmentsWithFlags;
   }
 
   async findByAccessibilities(accessibilities: AccessibilityEntity) {
