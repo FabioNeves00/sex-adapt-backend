@@ -26,6 +26,11 @@ export class AuthService {
     await this.updateRtHash(new_user.id, tokens.refresh_token);
 
     delete new_user.password;
+    delete new_user.favorites
+    delete new_user.establishment_suggestions
+    delete new_user.reviews
+    delete new_user.suports
+
     return { user: new_user, tokens };
   }
 
@@ -42,7 +47,12 @@ export class AuthService {
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refresh_token);
     delete user.password;
-
+    delete user.password;
+    delete user.favorites
+    delete user.establishment_suggestions
+    delete user.reviews
+    delete user.suports
+    
     return { user, tokens };
   }
 
