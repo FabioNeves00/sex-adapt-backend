@@ -14,6 +14,7 @@ import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { GetCurrentUserId, Public } from '../../common/decorators';
 import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
+import { AccessTokenGuard } from '@guards/access-token.guard';
 
 @ApiTags('Establishment Routes')
 @ApiBearerAuth()
@@ -30,6 +31,7 @@ export class EstablishmentController {
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
+  @UseGuards(AccessTokenGuard)
   @Get()
   findAll(
     @GetCurrentUserId() userId: string

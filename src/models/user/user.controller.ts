@@ -15,6 +15,7 @@ import { GetCurrentUserId } from '../../common/decorators';
 import { SuggestionService } from '../../providers/suggestion/suggestion.service';
 import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
+import { AccessTokenGuard } from '@guards/access-token.guard';
 
 @ApiTags('User Routes')
 @ApiBearerAuth()
@@ -40,12 +41,14 @@ export class UserController {
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
+  @UseGuards(AccessTokenGuard)
   @Get('/suggestion')
   async generateSuggestions(@GetCurrentUserId() userId: string) {
     return await this.suggestionService.generateUserSuggestions(userId);
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
+  @UseGuards(AccessTokenGuard)
   @Get('/favorites')
   async getFavorites(@GetCurrentUserId() userId: string) {
     return await this.favoriteService.getUserFavorites(userId);

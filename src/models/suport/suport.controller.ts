@@ -14,11 +14,12 @@ import {
 import { GetCurrentUserId } from '../../common/decorators';
 import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
+import { AccessTokenGuard } from '@guards/access-token.guard';
 
 @ApiTags('Support Routes')
 @ApiBearerAuth()
 @Controller('suport')
-@UseGuards(new ApiKeyGuard('CLIENT'))
+@UseGuards(new ApiKeyGuard('CLIENT'), AccessTokenGuard)
 export class SuportController {
   constructor(private readonly suportService: SuportService) {}
 
