@@ -6,7 +6,8 @@ import {
   Patch,
   Param,
   Delete,
-  UseGuards
+  UseGuards,
+  Query
 } from '@nestjs/common';
 import { EstablishmentService } from './establishment.service';
 import { CreateEstablishmentDto } from './dto/create-establishment.dto';
@@ -15,6 +16,7 @@ import { GetCurrentUserId, Public } from '../../common/decorators';
 import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 import { AccessTokenGuard } from '@guards/access-token.guard';
+import { GeolibInputCoordinates } from 'geolib/es/types';
 
 @ApiTags('Establishment Routes')
 @ApiBearerAuth()
@@ -34,15 +36,22 @@ export class EstablishmentController {
   @UseGuards(AccessTokenGuard)
   @Get()
   findAll(
-    @GetCurrentUserId() userId: string
+    @GetCurrentUserId() userId: string,
+    @Body('userCoordinates') userCoordinates: GeolibInputCoordinates, 
+    @Query('distance') distance?: string,
+    @Query('price') price?: string
   ) {
-    return this.establishmentService.findAll(userId);
+    return this.establishmentService.findAll(userId, { price, distance, userCoordinates });
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
+  @UseGuards(AccessTokenGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.establishmentService.findOneOrFail({ where: { id } });
+  findOne(
+    @Param('id') id: string,
+    @GetCurrentUserId() userId: string,
+  ) {
+    return this.establishmentService.findOneOrFail({ where: { id } }, userId);
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
