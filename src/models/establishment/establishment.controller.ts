@@ -15,7 +15,7 @@ import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { GetCurrentUserId, Public } from '../../common/decorators';
 import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
-import { AccessTokenGuard } from '@guards/access-token.guard';
+import { AccessTokenGuard } from '../../common/guards/access-token.guard';
 import { GeolibInputCoordinates } from 'geolib/es/types';
 
 @ApiTags('Establishment Routes')
