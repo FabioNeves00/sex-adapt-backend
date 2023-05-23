@@ -22,7 +22,7 @@ $ docker compose build && docker compose up -d
 ### Docker Database:
 To install with docker, run the command:
 
-> $ docker run --name container-name -e POSTGRES_PASSWORD=your-password -p 5434:5434 -d postgres
+> $ docker run --name container-name -e POSTGRES_PASSWORD=your-password -p 5432:5432 -d postgres
 
 After the installations is completed, create a database named `sex_adapt` with the GUI of your choices, recommended: pgAdmin or [DBeaver](https://dbeaver.io/).
 
