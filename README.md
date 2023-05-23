@@ -3,7 +3,6 @@
 ## Links:
 - [Diagrama UML](https://www.figma.com/file/Cd2JEqC6xwE6xUdFibFOoG/Back-end-Diagrama-ER?node-id=0%3A1)
 - [Diagrama de Rotas](https://www.figma.com/file/V9Jp8f1AIjtT0KH4WPcwsm/Back-End-Routes)
-- [Insomnia file](Insomnia_2023-02-09.json)
 
 ## Dependencies:
 
@@ -13,46 +12,44 @@
 - [NestJS/cli](https://docs.nestjs.com/cli/overview)
 - [Bash](https://git-scm.com/downloads)
 
-## Setup without docker:
-	Step 1. sudo su -U postgres psql
-	Step 2. CREATE DATABASE sex_adapt;
-	Step 3.	CREATE USER sexadapt WITH PASSWORD 'sexadapt';
-	Step 4.	GRANT ALL PRIVILEGES ON DATABASE sex_adapt TO sexadapt;
-	
-## Postgres info:
-	Docker will be running on port 5432 (default)
-	Docker container default name is sex-adapt-backend-db
+## Setup
 
-## Setup after installing [docker](https://www.docker.com/):
-### If you want to load on docker:
-	1.  sudo docker compose up or docker compose up
-### If you want to start local:
-	1. bash ./start.sh
-	2. yarn install @nestjs/cli && yarn
+### Docker:
+```sh
+$ docker compose build && docker compose up -d
+```
 
-## Local database infos:
-	Docker will be running on host localhost (default)
-	Docker will be running on port 5432 (default)
-	Docker container default name is postgres-sex-adapt
-	
-## Docker database infos:
-	Docker will be running on host db (default)
-	Docker will be running on port 35000 (default)
-	Docker container default name is sex-adapt-backend-db
+### Docker Database:
+To install with docker, run the command:
 
-## Known Errors:
+> $ docker run --name container-name -e POSTGRES_PASSWORD=your-password -p 5434:5434 -d postgres
 
-1. ECONNREFUSED ::1:5432
-	- Docker might not be running
-		- Solution 1: `sudo service run docker`;
-		- Solution 2: Check your firewall;
-2. error: database "sex_adapt" does not exist
-	- Database wasn't created
-		- Solution: 
-			1. Execute `docker exec -it postgres-sex-adapt psql -U postgres`;
-			2. Execute `CREATE DATABASE "sex_adapt"`;
-			3. Quit with \q and try again;
-3. error: database "sex_adapt" already exists
-	- Database is duplicated
-		- Solution: 
-			1. Restart sex-adapt-backend-db container with: `docker run sex-adapt-backend-db`
+After the installations is completed, create a database named `sex_adapt` with the GUI of your choices, recommended: pgAdmin or [DBeaver](https://dbeaver.io/).
+
+### Local:
+Obs: You can create by accessing your local PGAdmin or any other database visualizer as in Docker Database
+
+1. Enter PSQL terminal 
+> $ sudo su -U postgres psql
+2. Create a user with the name sexadapt
+> $ CREATE USER sexadapt WITH PASSWORD 'sexadapt';
+3. Create a database with the name sex_adapt
+> $ CREATE DATABASE 'sex_adapt';
+4. Grant privileges to new user
+> $ GRANT ALL PRIVILEGES ON DATABASE 'sex_adapt' TO 'sexadapt';
+
+### Run the API:
+1. Install dependencies:
+> $ yarn
+2. Run NestJS script:
+> $ yarn start:dev
+
+#### Infos:
+- Default port is 3000.
+- Check if the same user name and database are being used in .env file.
+- For documentation check Documentation - Swagger section.
+- If the database docker container is not running try running a second time through docker desktop.
+
+## Documentation - Swagger:
+- ### /docs is for statically generated swagger bundles
+- ### /swagger is for dyanmic swagger bundles
