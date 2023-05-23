@@ -13,7 +13,7 @@ import { EstablishmentService } from './establishment.service';
 import { CreateEstablishmentDto } from './dto/create-establishment.dto';
 import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { GetCurrentUserId, Public } from '../../common/decorators';
-import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiHeader, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 import { AccessTokenGuard } from '../../common/guards/access-token.guard';
 import { GeolibInputCoordinates } from 'geolib/es/types';
@@ -33,11 +33,13 @@ export class EstablishmentController {
   }
 
   @ApiHeader({ required: true, name: 'x_api_key' })
+  @ApiQuery({ required: false, name: 'distance' })
+  @ApiQuery({ required: false, name: 'price' })
   @UseGuards(AccessTokenGuard)
   @Get()
   findAll(
     @GetCurrentUserId() userId: string,
-    @Body('userCoordinates') userCoordinates: GeolibInputCoordinates, 
+    @Body('userCoordinates') userCoordinates?: { latitude: string; longitude: string }, 
     @Query('distance') distance?: string,
     @Query('price') price?: string
   ) {
