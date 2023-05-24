@@ -14,13 +14,11 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { GetCurrentUserId } from '../../common/decorators';
 import { SuggestionService } from '../../providers/suggestion/suggestion.service';
 import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
-import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
 import { AccessTokenGuard } from '../../common/guards/access-token.guard';
 
 @ApiTags('User Routes')
 @ApiBearerAuth()
 @Controller('user')
-@UseGuards(new ApiKeyGuard('CLIENT'))
 export class UserController {
   constructor(
     private readonly userService: UserService,
