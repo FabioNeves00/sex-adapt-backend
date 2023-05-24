@@ -8,5 +8,6 @@ export const getDistanceFromUser = (userDistance: GeolibInputCoordinates, establ
     distanceFromUser: getDistance(userDistance, {
       latitude: establishment.latitude,
       longitude: establishment.longitude
-    })}
+    }) / 1000
+  }
 }

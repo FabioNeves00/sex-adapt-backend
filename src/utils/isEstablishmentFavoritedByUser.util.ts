@@ -3,4 +3,4 @@ import { EstablishmentEntity } from '../models/establishment/entities/establishm
 export const isEstablishmentFavoritedByUser = (
   establishment: EstablishmentEntity,
   userId: string
-) => establishment.favoritedBy.findIndex((user) => user.id === userId);
+) => establishment.favoritedBy.some((user) => user.id === userId);

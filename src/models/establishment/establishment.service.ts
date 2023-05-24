@@ -62,7 +62,7 @@ export class EstablishmentService {
       return {
         ...establishment,
         rating: getEstablishmentRating(establishment),
-        isFavoritedByUser: !!isEstablishmentFavoritedByUser(
+        isFavoritedByUser: isEstablishmentFavoritedByUser(
           establishment,
           userId
         )
