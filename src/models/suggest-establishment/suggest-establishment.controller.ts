@@ -4,7 +4,7 @@ import { CreateSuggestEstablishmentDto } from './dto/create-suggest-establishmen
 import { ApiTags, ApiBearerAuth, ApiHeader } from '@nestjs/swagger';
 import { GetCurrentUserId } from '../../common/decorators';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
-import { AccessTokenGuard } from '@guards/access-token.guard';
+import { AccessTokenGuard } from '../../common/guards/access-token.guard';
 
 @ApiTags('Suggestion Routes')
 @ApiBearerAuth()

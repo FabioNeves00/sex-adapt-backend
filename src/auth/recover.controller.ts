@@ -18,7 +18,7 @@ import { ApiKeyGuard } from '../common/guards/auth-key.guard';
 @ApiTags('Recover Routes')
 @Public()
 @Controller('auth/recover')
-@UseGuards(new ApiKeyGuard('CLIENT'))
+
 export class RecoverController {
   constructor(private recoverService: RecoverPasswordService) {}
 

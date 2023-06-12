@@ -15,7 +15,7 @@ import { CreateReviewDto } from './dto/create-review.dto';
 import { GetCurrentUserId } from '../../common/decorators';
 import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApiKeyGuard } from '../../common/guards/auth-key.guard';
-import { AccessTokenGuard } from '@guards/access-token.guard';
+import { AccessTokenGuard } from '../../common/guards/access-token.guard';
 
 @ApiTags('Review Routes')
 @ApiBearerAuth()

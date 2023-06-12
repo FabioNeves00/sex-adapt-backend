@@ -1,3 +1,4 @@
+import { sortByUserDistance } from './../../utils/sortByUserDistance.util';
 import { isEstablishmentFavoritedByUser } from './../../utils/isEstablishmentFavoritedByUser.util';
 import { AccessibilityEntity } from '../../models/accessibility/entities/accessibility.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
@@ -8,6 +9,8 @@ import { UpdateEstablishmentDto } from './dto/update-establishment.dto';
 import { EstablishmentEntity } from './entities/establishment.entity';
 import { HttpCustomMessages } from '../../common/helpers/exceptions/messages/index.messages';
 import { getEstablishmentRating } from '../../utils/getEstablishmentRating';
+import { GeolibInputCoordinates } from 'geolib/es/types';
+import { filter } from 'rxjs';
 
 @Injectable()
 export class EstablishmentService {
@@ -38,11 +41,18 @@ export class EstablishmentService {
     return saved;
   }
 
-  async findAll(userId: string) {
+  async findAll(
+    userId: string,
+    filters: {
+      price?: string;
+      distance?: string;
+      userCoordinates?: GeolibInputCoordinates;
+    }
+  ) {
     const establishments = await this.establishmentRepository.find({
       relations: ['accessibilities', 'reviews', 'favoritedBy']
     });
-    const establishmentsWithFlags = establishments.map((establishment) => {
+    let establishmentsWithFlags = establishments.map((establishment) => {
       delete establishment.createdAt;
       delete establishment.updatedAt;
       delete establishment.accessibilities.createdAt;
@@ -52,10 +62,29 @@ export class EstablishmentService {
       return {
         ...establishment,
         rating: getEstablishmentRating(establishment),
-        isFavoritedByUser: isEstablishmentFavoritedByUser(establishment, userId)
+        isFavoritedByUser: isEstablishmentFavoritedByUser(
+          establishment,
+          userId
+        )
       };
     });
-    establishmentsWithFlags.forEach(establishment => delete establishment.favoritedBy)
+    establishmentsWithFlags.forEach(
+      (establishment) => delete establishment.favoritedBy
+    );
+
+    if (filters.price) {
+      establishmentsWithFlags = establishmentsWithFlags.filter(
+        (establishment) => establishment.price <= +filters.price
+      );
+    }
+
+    if (filters.distance && filters.userCoordinates) {
+      establishmentsWithFlags = sortByUserDistance(
+        filters.userCoordinates,
+        establishmentsWithFlags
+      );
+    }
+
     return establishmentsWithFlags;
   }
 
@@ -89,7 +118,10 @@ export class EstablishmentService {
     return establishmentsWithRating;
   }
 
-  async findOneOrFail(options: FindOneOptions<EstablishmentEntity>) {
+  async findOneOrFail(
+    options: FindOneOptions<EstablishmentEntity>,
+    userId?: string,
+  ) {
     try {
       const establishment = await this.establishmentRepository.findOneOrFail({
         ...options,
@@ -106,18 +138,19 @@ export class EstablishmentService {
           }
         }
       });
-      const establishmentsWithRating = {
+      let establishmentsWithFlags = {
         ...establishment,
-        rating: getEstablishmentRating(establishment)
+        rating: getEstablishmentRating(establishment),
+        isFavoritedByUser: isEstablishmentFavoritedByUser(establishment, userId)
       };
-      delete establishmentsWithRating.createdAt;
-      delete establishmentsWithRating.updatedAt;
-      delete establishmentsWithRating.accessibilities.createdAt;
-      delete establishmentsWithRating.accessibilities.updatedAt;
-      delete establishmentsWithRating.accessibilities.establishment;
-      delete establishmentsWithRating.accessibilities.id;
+      delete establishmentsWithFlags.createdAt;
+      delete establishmentsWithFlags.updatedAt;
+      delete establishmentsWithFlags.accessibilities.createdAt;
+      delete establishmentsWithFlags.accessibilities.updatedAt;
+      delete establishmentsWithFlags.accessibilities.establishment;
+      delete establishmentsWithFlags.accessibilities.id;
 
-      return establishmentsWithRating;
+      return establishmentsWithFlags;
     } catch (error) {
       throw new NotFoundException(HttpCustomMessages.ESTABLISHMENT.NOT_FOUND);
     }

@@ -4,15 +4,15 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
-import { resolve } from 'path';
-import { createWriteStream, writeFileSync } from 'fs';
+import { createWriteStream } from 'fs';
 import { get } from 'http';
+import { ApiKeyGuard } from './common/guards/auth-key.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get<ConfigService>(ConfigService);
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalGuards(new AccessTokenGuard(new Reflector()));
+  app.useGlobalGuards(new AccessTokenGuard(new Reflector()), new ApiKeyGuard('CLIENT'));
   const config = new DocumentBuilder()
     .setTitle('Sex-adapt')
     .setDescription('API Routes and data')
