@@ -26,10 +26,10 @@ export class AuthService {
     await this.updateRtHash(new_user.id, tokens.refresh_token);
 
     delete new_user.password;
-    delete new_user.favorites
-    delete new_user.establishment_suggestions
-    delete new_user.reviews
-    delete new_user.suports
+    delete new_user.favorites;
+    delete new_user.establishment_suggestions;
+    delete new_user.reviews;
+    delete new_user.suports;
 
     return { user: new_user, tokens };
   }
@@ -48,11 +48,11 @@ export class AuthService {
     await this.updateRtHash(user.id, tokens.refresh_token);
     delete user.password;
     delete user.password;
-    delete user.favorites
-    delete user.establishment_suggestions
-    delete user.reviews
-    delete user.suports
-    
+    delete user.favorites;
+    delete user.establishment_suggestions;
+    delete user.reviews;
+    delete user.suports;
+
     return { user, tokens };
   }
 
@@ -65,13 +65,13 @@ export class AuthService {
   async updateRefreshToken(userId: string, refresh_token: string) {
     const user = await this.userService.findOneById(userId);
     if (!user || !user.hashedRefreshToken)
-      throw new NotFoundException('User not found');
+      throw new NotFoundException('Usuário não encontrado.');
 
     const rt_match = await argon2.verify(
       user.hashedRefreshToken,
       refresh_token
     );
-    if (!rt_match) throw new UnauthorizedException();
+    if (!rt_match) throw new UnauthorizedException('Refresh token inválido.');
 
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refresh_token);

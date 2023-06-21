@@ -39,9 +39,9 @@ export class UserService {
       delete saved.accessibilities.createdAt;
       return saved;
     } catch (error) {
-      console.log(error);
-      
-      throw new UnauthorizedException('E-mail already in use. Try to login');
+      throw new UnauthorizedException(
+        'Email já está em uso. Tente fazer login'
+      );
     }
   }
 
@@ -89,8 +89,8 @@ export class UserService {
       },
       relations: ['reviews', 'accessibilities', 'suports', 'favorites']
     });
-    if(!user) throw new NotFoundException('Usuário não encontrado')
-    
+    if (!user) throw new NotFoundException('Usuário não encontrado');
+
     delete user.createdAt;
     delete user.updatedAt;
     delete user.hashedRefreshToken;
@@ -111,7 +111,7 @@ export class UserService {
         relations: ['reviews', 'accessibilities', 'suports', 'favorites']
       });
     } catch (error) {
-      throw new NotFoundException(error.message);
+      throw new NotFoundException('Usuário não encontrado.');
     }
   }
 
