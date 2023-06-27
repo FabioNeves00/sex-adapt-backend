@@ -71,7 +71,7 @@ export class UserService {
       where: {
         id
       },
-      relations: ['reviews', 'accessibilities', 'suports', 'favorites']
+      relations: ['reviews', 'suports', 'favorites']
     });
     delete user.createdAt;
     delete user.updatedAt;
@@ -87,7 +87,7 @@ export class UserService {
       where: {
         email
       },
-      relations: ['reviews', 'accessibilities', 'suports', 'favorites']
+      relations: ['reviews', 'suports', 'favorites']
     });
     if (!user) throw new NotFoundException('Usuário não encontrado');
 

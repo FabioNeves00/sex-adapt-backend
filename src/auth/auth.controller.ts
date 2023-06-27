@@ -9,7 +9,6 @@ import { ApiKeyGuard } from '../common/guards/auth-key.guard';
 
 @ApiTags('Auth Routes')
 @Controller('auth')
-
 export class AuthController {
   constructor(private authService: AuthService) {}
 
