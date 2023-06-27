@@ -31,7 +31,8 @@ export class UserEntity extends BaseEntity implements IUserEntity {
     () => AccessibilityEntity,
     (accessibilities) => accessibilities.user,
     {
-      cascade: true
+      cascade: true,
+      eager: true
     }
   )
   @JoinColumn({ name: 'accessibility_id' })
