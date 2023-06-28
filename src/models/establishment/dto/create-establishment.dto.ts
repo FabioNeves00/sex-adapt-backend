@@ -96,7 +96,7 @@ export class CreateEstablishmentDto {
     message: 'room_photos não pode estar vazio.'
   })
   @IsArray({
-    message: 'room_photos deve ser uma string.'
+    message: 'room_photos deve ser um array de strings.'
   })
   room_photos: string[];
 
