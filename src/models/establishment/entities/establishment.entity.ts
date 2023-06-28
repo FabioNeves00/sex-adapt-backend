@@ -21,7 +21,8 @@ export class EstablishmentEntity
     () => AccessibilityEntity,
     (accessibilities) => accessibilities.establishment,
     {
-      cascade: true
+      cascade: true,
+      eager: true
     }
   )
   @JoinColumn({ name: 'accessibility_id' })
@@ -71,8 +72,6 @@ export class EstablishmentEntity
   @Column({ default: '' })
   whatsapp?: string;
 
-  @OneToMany(() => ReviewEntity, (review) => review.establishment, {
-    eager: true
-  })
+  @OneToMany(() => ReviewEntity, (review) => review.establishment)
   reviews: ReviewEntity[];
 }

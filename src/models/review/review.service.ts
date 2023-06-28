@@ -17,9 +17,10 @@ export class ReviewService {
     try {
       const review = this.reviewsRepository.create({
         user: userId as unknown as UserEntity, // O proprio typeorm converte o id para a entidade de usuario por causa da configuração da relação la na entidade
-        establishment: createReviewDto.establishmentId as unknown as EstablishmentEntity,
+        establishment:
+          createReviewDto.establishmentId as unknown as EstablishmentEntity,
         comment: createReviewDto.comment,
-        grade: createReviewDto.grade,
+        grade: createReviewDto.grade
       });
       await this.reviewsRepository.save(review);
       return review;
@@ -36,7 +37,7 @@ export class ReviewService {
         }
       },
       relations: {
-        user: true,
+        user: true
       },
       select: {
         user: {
