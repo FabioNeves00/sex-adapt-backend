@@ -27,7 +27,7 @@ export class CreateReviewDto {
   })
   comment: string;
 
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: 'establishmentId não pode esta vazio' })
+  @IsString({ message: 'establishmentId deve ser uma string' })
   establishmentId: string;
 }

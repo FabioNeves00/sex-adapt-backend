@@ -62,10 +62,7 @@ export class EstablishmentService {
       return {
         ...establishment,
         rating: getEstablishmentRating(establishment),
-        isFavoritedByUser: isEstablishmentFavoritedByUser(
-          establishment,
-          userId
-        )
+        isFavoritedByUser: isEstablishmentFavoritedByUser(establishment, userId)
       };
     });
     establishmentsWithFlags.forEach(
@@ -120,7 +117,7 @@ export class EstablishmentService {
 
   async findOneOrFail(
     options: FindOneOptions<EstablishmentEntity>,
-    userId?: string,
+    userId?: string
   ) {
     try {
       const establishment = await this.establishmentRepository.findOneOrFail({
@@ -138,7 +135,7 @@ export class EstablishmentService {
           }
         }
       });
-      let establishmentsWithFlags = {
+      const establishmentsWithFlags = {
         ...establishment,
         rating: getEstablishmentRating(establishment),
         isFavoritedByUser: isEstablishmentFavoritedByUser(establishment, userId)

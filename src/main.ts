@@ -12,7 +12,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get<ConfigService>(ConfigService);
   app.useGlobalPipes(new ValidationPipe());
-  app.useGlobalGuards(new AccessTokenGuard(new Reflector()), new ApiKeyGuard('CLIENT'));
+  app.useGlobalGuards(
+    new AccessTokenGuard(new Reflector()),
+    new ApiKeyGuard('CLIENT')
+  );
   const config = new DocumentBuilder()
     .setTitle('Sex-adapt')
     .setDescription('API Routes and data')
@@ -24,7 +27,9 @@ async function bootstrap() {
   if (process.env.NODE_ENV === 'development') {
     // write swagger ui files
     get(
-      `http://localhost:${configService.get('PORT')}/swagger/swagger-ui-bundle.js`,
+      `http://localhost:${configService.get(
+        'PORT'
+      )}/swagger/swagger-ui-bundle.js`,
       function (response) {
         response.pipe(createWriteStream('swagger-static/swagger-ui-bundle.js'));
         console.log(
@@ -34,7 +39,9 @@ async function bootstrap() {
     );
 
     get(
-      `http://localhost:${configService.get('PORT')}/swagger/swagger-ui-init.js`,
+      `http://localhost:${configService.get(
+        'PORT'
+      )}/swagger/swagger-ui-init.js`,
       function (response) {
         response.pipe(createWriteStream('swagger-static/swagger-ui-init.js'));
         console.log(
@@ -44,7 +51,9 @@ async function bootstrap() {
     );
 
     get(
-      `http://localhost:${configService.get('PORT')}/swagger/swagger-ui-standalone-preset.js`,
+      `http://localhost:${configService.get(
+        'PORT'
+      )}/swagger/swagger-ui-standalone-preset.js`,
       function (response) {
         response.pipe(
           createWriteStream('swagger-static/swagger-ui-standalone-preset.js')
@@ -55,12 +64,15 @@ async function bootstrap() {
       }
     );
 
-    get(`http://localhost:${configService.get('PORT')}/swagger/swagger-ui.css`, function (response) {
-      response.pipe(createWriteStream('swagger-static/swagger-ui.css'));
-      console.log(
-        `Swagger UI css file written to: '/swagger-static/swagger-ui.css'`
-      );
-    });
+    get(
+      `http://localhost:${configService.get('PORT')}/swagger/swagger-ui.css`,
+      function (response) {
+        response.pipe(createWriteStream('swagger-static/swagger-ui.css'));
+        console.log(
+          `Swagger UI css file written to: '/swagger-static/swagger-ui.css'`
+        );
+      }
+    );
   }
   await app.listen(configService.get('PORT'), () => {
     console.log(`Listening on localhost:${configService.get('PORT')}`);
