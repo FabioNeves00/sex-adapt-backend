@@ -7,7 +7,7 @@ import { isApiKeyValid } from '../../utils/isApiKeyValid';
 export class ApiKeyGuard implements CanActivate {
   constructor(private readonly keyType: 'DEV' | 'CLIENT') {}
   canActivate(
-    context: ExecutionContext,
+    context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request: CustomRequest = context.switchToHttp().getRequest();
 

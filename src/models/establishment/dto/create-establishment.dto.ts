@@ -64,24 +64,40 @@ export class CreateEstablishmentDto {
   };
 
   @IsBoolean({
-    message: HttpCustomMessages.VALIDATION.GROUND_FLOOR_ROOM.INVALID
+    message: 'ground_floor_room deve ser um boolean.'
   })
   ground_floor_room: boolean;
 
-  @IsString()
-  @IsLatitude()
+  @IsString({
+    message: 'latitude deve ser uma string.'
+  })
+  @IsLatitude({
+    message: 'latitude deve ser um valor válido.'
+  })
   latitude: string;
 
-  @IsString()
-  @IsLongitude()
+  @IsString({
+    message: 'longitude deve ser uma string.'
+  })
+  @IsLongitude({
+    message: 'longitude deve ser um valor válido.'
+  })
   longitude: string;
 
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({
+    message: 'cover_photo não pode estar vazio.'
+  })
+  @IsString({
+    message: 'cover_photo deve ser uma string.'
+  })
   cover_photo: string;
 
-  @IsNotEmpty()
-  @IsArray()
+  @IsNotEmpty({
+    message: 'room_photos não pode estar vazio.'
+  })
+  @IsArray({
+    message: 'room_photos deve ser um array de strings.'
+  })
   room_photos: string[];
 
   @Matches(
