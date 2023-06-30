@@ -1,0 +1,7 @@
+- name: Fork Sync
+  uses: tgymnich/fork-sync@v1.2.1
+  with:
+    owner: geta-org
+    github_token: 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
+    head: dev
+    base: dev
